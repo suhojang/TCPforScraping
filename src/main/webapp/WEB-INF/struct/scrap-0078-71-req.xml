@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 홈택스 -->
+	<element name="REGNUMBER"			mappingElement="SSN"		default=""/>
+	<element name="DOCNUMBER"			mappingElement="DC_NO"		default=""/>
+	<element name="DOCUFILENAME"		mappingElement="DC_FL_NM"	default=""/>
+	<element name="TRANSTYPE"			default="1"/>   <!--FTP TYPE  -->
+</struct>

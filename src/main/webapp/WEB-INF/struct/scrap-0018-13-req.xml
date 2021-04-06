@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- (국민연금)가입증명 및 가입내역 -->
+	<element name="MINWONNUM"		mappingElement="DC_NO"		default=""/>	<!-- 민원접수번호 -->
+	<element name="INQSTARTDATE"	mappingElement="ISS_DAT"	default=""/>	<!-- 조회시작일 -->
+	<element name="INQENDDATE"		mappingElement="ISE_DAT"	default=""/>	<!-- 조회종료일 -->
+	<element name="DOCUFILENAME"	mappingElement="DC_FL_NM"	default=""/>	<!-- 문서파일명 -->
+	<element name="TRANSTYPE"		default="1"/>   <!--FTP TYPE  -->
+</struct>

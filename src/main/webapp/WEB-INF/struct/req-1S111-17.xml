@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 자동차등록원부 요청 -->
+	<field name="SCAF_ID"	    length="12"	    type="AN"	default=""/>		<!-- scaf ID -->
+	<field name="OWNM"		    length="50"	    type="AN"	default=""/>		<!-- 소유자명 -->
+	<field name="OWNO_KN"	    length="1"	    type="AN"	default=""/>		<!-- 소유자고유번호 구분 (0:주민번호,1:외국인등록번호,2:법인번호,3:사업자번호) -->
+	<field name="OWNO"		    length="13"	    type="AN"	default=""/>		<!-- 소유자고유식별 번호 -->
+	<field name="CRNO_KN"	    length="1"	    type="AN"	default=""/>		<!-- 차량번호 구분 (1:차량번호,2:차대번호) -->
+	<field name="VHCL_NO"	    length="12"	    type="AN"	default=""/>		<!-- 차량번호 -->
+	<field name="VSRL_NO"	    length="17"	    type="AN"	default=""/>		<!-- 차대번호 -->
+	<field name="PRT_KN"	    length="1"	    type="AN"	default=""/>		<!-- 출력방식 (Y:출력,데이터파싱출력  N:미출력  D:미출력,데이터파싱출력  V:소유자검증 ) -->
+	<field name="PHN1"		    length="2"	    type="AN"	default=""/>		<!-- 전화번호1 -->
+	<field name="PHN2"		    length="4"	    type="AN"	default=""/>		<!-- 전화번호2 -->
+	<field name="PHN3"		    length="4"	    type="AN"	default=""/>		<!-- 전화번호3 -->
+	<field name="MBL1"		    length="3"	    type="AN"	default=""/>		<!-- 휴대전화1 -->
+	<field name="MBL2"		    length="4"	    type="AN"	default=""/>		<!-- 휴대전화2 -->
+	<field name="MBL3"		    length="4"	    type="AN"	default=""/>		<!-- 휴대전화3 -->
+	<field name="EML"		    length="50"	    type="AN"	default=""/>		<!-- 이메일 -->
+	<field name="BZ_OPT"	    length="1"	    type="AN"	default=""/>		<!-- 업무선택 (0:갑,1:을,2:갑+을) -->
+	<field name="OWNO_OPN_KN"	length="1"	    type="AN"	default=""/>		<!-- 소유자 고유번호 공개구분 (0:비공개,1:공개) -->
+	<field name="V_INF_MR_KN"	length="1"	    type="AN"	default=""/>		<!-- 자동차 등록내역 표시구분 (0:전체내역,1:최종내역) -->
+	<field name="PRT_CNT"	    length="4"	    type="N"	default="0001"/>	<!-- 발급부수(0001고정) -->
+	<field name="AP_KN"		    length="1"	    type="AN"	default="2"/>		<!-- 신청구분(2:열람. 2로 고정) -->
+	<field name="DC_PRT_KN"	    length="1"	    type="AN"	default=""/>		<!-- 문서출력구분 -->
+	<field name="DC_FL_NM"	    length="100"	type="AN"	default=""/>		<!-- 문서파일명 -->
+	<field name="FL_INF_MRK_YN"	length="1"	    type="AN"	default=""/>		<!-- 저장파일정보 표시여부 -->
+	<field name="FTP_TYPE"		length="1"	    type="AN"	default="1"/>		<!-- FTP 구분(1:FTP , 2:SFTP) -->
+	<field name="FLR"		    length="109"	type="AN"	default=""/>		<!-- 공란 -->
+</struct>

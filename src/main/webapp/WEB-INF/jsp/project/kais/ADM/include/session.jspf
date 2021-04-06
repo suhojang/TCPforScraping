@@ -1,0 +1,7 @@
+<%@ page import="project.kais.record.MgrInfoRec" %><%
+	MgrInfoRec	mgrRec	= (MgrInfoRec)session.getAttribute("MgrInfoRec");
+	if(mgrRec==null || mgrRec.getMgrinf_id()==null){
+		mgrRec	= new MgrInfoRec();
+		response.sendRedirect("/ADM_LGN_010000/");
+	}
+%>

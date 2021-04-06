@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 외국인등록증 진위 요청 -->
+	<field name="SCAF_ID"	length="12"	    type="AN"	default=""/>	<!-- SCAF ID -->
+	<field name="SSN"		length="13"	    type="AN"	default=""/>	<!-- 외국인등록번호 -->
+	<field name="PBL_DT"	length="8"	    type="AN"	default=""/>	<!-- 발급일자 -->
+	<field name="FLR"		length="165"	type="AN"	default=""/>	<!-- 공란 -->
+</struct>

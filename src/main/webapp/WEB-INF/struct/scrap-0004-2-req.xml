@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 도로교통공단 운전면호증 진위여부 -->
+	<element name="JUMIN"			mappingElement="BRTH"		default=""/>
+	<element name="NAME"			mappingElement="NM"			default=""/>
+	<element name="LNCAREANUMBER"	mappingElement="LC_NO1"		default=""/>
+	<element name="LNCYEARNUMBER"	mappingElement="LC_NO2"		default=""/>
+	<element name="LNCSERIALNUMBER"	mappingElement="LC_NO3"		default=""/>
+	<element name="LNCNUMBER"		mappingElement="LC_NO4"		default=""/>
+	<element name="PWDSERIALNUMBER"	mappingElement="PWD_NO"		default=""/>
+</struct>

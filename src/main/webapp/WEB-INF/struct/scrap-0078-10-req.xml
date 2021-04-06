@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 홈택스 민원증명 발급번호 진위 조회 -->
+	<element name="REGNUMBER"			mappingElement="SSN"		default=""/>
+	<element name="DOCNUMBER"			mappingElement="DC_NO"		default=""/>
+</struct>

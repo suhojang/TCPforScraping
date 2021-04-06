@@ -1,0 +1,18 @@
+<%@ page contentType="text/html;charset=UTF-8" errorPage = "/WEB-INF/jsp/common/error.jsp"%><%@
+ page import="egovframework.rte.fdl.property.EgovPropertyService"%><%@
+ page import="org.springframework.web.context.ContextLoader"%><%@
+ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@
+ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@
+ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%><%@
+ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %><%@
+ taglib prefix="spring" uri="http://www.springframework.org/tags"%><%@
+ taglib prefix="kwic" uri="http://www.kwic_tag_support.com/tags"%><%
+
+	String ROOT_PATH	= "/";
+	String IMG_PATH		= ROOT_PATH+"manager/images/";
+	String CSS_PATH		= ROOT_PATH+"manager/css/";
+	String JS_PATH		= ROOT_PATH+"manager/js/";
+	String NEON_PATH	= ROOT_PATH+"neon/";
+
+	String menuId		= (String)request.getAttribute("URI_ID");
+%>

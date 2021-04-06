@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="ADM_ERR_S1000A" resultClass="oMap" parameterClass="java.util.Map">
+		/*처리불가 목록조회*/
+		SELECT
+			NO
+			,NCRQER_RDT
+			,NCRQER_RTCD
+			,NCRQER_RTMSG
+			,NCRQER_SEQ
+		FROM
+		(
+			SELECT
+				RANK() OVER(ORDER BY A.NCRQER_RDT DESC) AS NO
+				,NCRQER_SEQ
+				,COALESCE(CD0003.CDDTL_NM,A.NCRQER_RTCD) AS NCRQER_RTCD
+				,NCRQER_RTMSG
+				,TO_CHAR(A.NCRQER_RDT,'YYYYMMDDHH24MISS') AS NCRQER_RDT
+			FROM TBKW_NCRQER A
+			
+			LEFT OUTER JOIN TBKW_CDDTL CD0003
+				ON A.NCRQER_RTCD = CD0003.CDDTL_DTLCD
+				AND CD0003.CDCLS_CLSCD = '0003'
+			
+			WHERE 1=1
+				<isNotEqual prepend="" property="NCRQER_RTCD" compareValue="">
+				AND A.NCRQER_RTCD = #NCRQER_RTCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="NCRQER_RDT_FR" compareValue=""><![CDATA[
+				AND TO_CHAR(A.NCRQER_RDT,'YYYYMMDD') >= #NCRQER_RDT_FR#
+				]]></isNotEqual>
+				<isNotEqual prepend="" property="NCRQER_RDT_TO" compareValue=""><![CDATA[
+				AND TO_CHAR(A.NCRQER_RDT,'YYYYMMDD') <= #NCRQER_RDT_TO#
+				]]></isNotEqual>
+		)A
+		WHERE NO BETWEEN TO_NUMBER(#STNO#,'999999999') AND TO_NUMBER(#EDNO#,'999999999')
+	</select>
+	<select id="ADM_ERR_S1000A_1" resultClass="oMap" parameterClass="java.util.Map">
+		/*처리불가 목록조회*/
+		SELECT
+			COUNT(NCRQER_SEQ) AS TCNT
+		FROM TBKW_NCRQER A
+		WHERE 1=1
+			<isNotEqual prepend="" property="NCRQER_RTCD" compareValue="">
+			AND A.NCRQER_RTCD = #NCRQER_RTCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="NCRQER_RDT_FR" compareValue=""><![CDATA[
+			AND TO_CHAR(A.NCRQER_RDT,'YYYYMMDD') >= #NCRQER_RDT_FR#
+			]]></isNotEqual>
+			<isNotEqual prepend="" property="NCRQER_RDT_TO" compareValue=""><![CDATA[
+			AND TO_CHAR(A.NCRQER_RDT,'YYYYMMDD') <= #NCRQER_RDT_TO#
+			]]></isNotEqual>
+	</select>
+	<select id="ADM_ERR_V1000A"  parameterClass="java.util.Map" resultClass="oMap">
+		/*처리불가 상세 조회*/
+		SELECT
+			A.NCRQER_SCRQ
+		FROM TBKW_NCRQER A
+		WHERE A.NCRQER_SEQ = TO_NUMBER(#NCRQER_SEQ#,'FM99999999999')
+	</select>
+	
+</sqlMap>

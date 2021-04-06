@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 건설기계원부(등록차량목록,갑,을) 발급  -->
+	<field name="H_LNTH"			length="10"		type="AN"	default=""			xpath18=""	/>
+	<field name="H_GP_CD"			length="9"		type="AN"	default="NICEIF   "	xpath18=""	/>
+	<field name="H_KN_CD"			length="4"		type="N"	default="0300"		xpath18=""	/>
+	<field name="H_BZ_CD"			length="5"		type="AN"	default="3A040"		xpath18=""	/> <!-- 거래구분코드 -->
+	<field name="H_T_FLG"			length="1"		type="AN"	default="B"			xpath18=""	/>
+	<field name="H_DVC_KN"			length="3"		type="AN"	default="503"		xpath18=""	/>	<!-- 단말기 구분 -->
+	<field name="H_RTCD"			length="4"		type="AN"	default=""			xpath18=""	/>	<!-- 응답코드 -->
+	<field name="H_ORG_ID"			length="9"		type="AN"	default=""			xpath18=""	/> <!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"		length="10"		type="N"	default=""			xpath18=""	/>
+	<field name="H_ORG_RQTM"		length="14"		type="N"	default=""			xpath18=""	/>
+	<field name="H_NCE_TL_NO"		length="10"		type="N"	default=""			xpath18=""	/> <!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"		length="14"		type="N"	default=""			xpath18=""	/> <!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"				length="17"		type="AN"	default=""			xpath18=""	/>
+	
+	<field name="G_BZCD"			length="2"		type="AN"	default="18"		xpath18=""	/>	<!-- 상품코드 -->
+	<field name="CST_MBR_NO"		length="20"		type="AN"	default=""			xpath18=""	/> 	<!-- 회원사 고객번호 -->
+	<field name="USR_ID"			length="40"		type="AN"	default=""			xpath18=""	/>	<!-- 사용자id -->
+	<field name="PRC_STS"			length="2"		type="AN"	default="02"		xpath18=""	/>	<!-- 진행상태 -->
+	<field name="RTCD"				length="4"		type="AN"	default=""			xpath18=""	/>	<!-- 스크래핑 응답코드 -->
+	<field name="USYN"				length="1"		type="AN"	default="Y"			xpath18=""	/>	<!-- 사용구분 -->
+	<field name="SRC_GB"			length="1"		type="AN"	default="5"			xpath18=""	/>	<!-- 스크래핑 제공구분 -->
+	<field name="USR_KN"			length="1"		type="AN"	default="1"			xpath18=""	/>	<!-- 사용자구분 -->
+
+	<field name="DC1_OWNO"			length="13"		type="AN"	default=""			xpath18="ORIGINALCOPY/LASTREGNO"	filter="SSN"/>	<!-- 주민등록번호 -->
+	<field name="UDF_NM"			length="20"		type="AN"	default=""			xpath18="ORIGINALCOPY/LASTNM"	/>	<!-- 성명 -->
+	<field name="DC1_VHCL_NO"		length="12"		type="AN"	default=""			xpath18="INREGINUMBER"	/>	<!-- 차량등록번호 -->
+	
+	<field name="VSRL_NO"			length="50"		type="AN"	default=""			xpath18="DISTINCTNUMBER"	/>		<!-- 차대번호 -->
+	<field name="RLYN"				length="1"		type="AN"	default=""			xpath18="CHECKRESULTYN"	/>			<!-- 소유자 차량 일치여부 -->
+	<field name="PBL_DPRT"			length="50"		type="AN"	default=""			xpath18="ISSUEAREA"	/>				<!-- 발급처 -->
+	<field name="DC1_CTCQ_NM"		length="50"		type="AN"	default=""			xpath18="ORIGINALCOPY/CTCQNM"	/>	<!-- 건설기계명 -->
+	<field name="DC1_FOM_NM"		length="50"		type="AN"	default=""			xpath18="ORIGINALCOPY/FOMNM"	/>	<!-- 형식 -->
+	<field name="DC1_STND_RD"		length="20"		type="AN"	default=""			xpath18="ORIGINALCOPY/STNDRD"	/>	<!-- 규격 -->
+	<field name="DC1_NATION_PRYE"	length="50"		type="AN"	default=""			xpath18="ORIGINALCOPY/NATIONPRYE"	/>	<!-- 제작국/연식 -->
+	<field name="DC1_MAK_RNM"		length="50"		type="AN"	default=""			xpath18="ORIGINALCOPY/MAKRNM"	/>	<!-- 제작회사 -->
+	<field name="DC1_MNFCT_DT"		length="8"		type="AN"	default=""			xpath18="ORIGINALCOPY/MNFCTDATE"	filter="DATE"/>	<!-- 수입 또는 제작일자 -->
+	<field name="DC1_FOM_CONFM_NO"	length="20"		type="AN"	default=""			xpath18="ORIGINALCOPY/FOMCONFMNO"	/>	<!-- 형식승인번호 -->
+	<field name="DC1_CAR_USE"		length="30"		type="AN"	default=""			xpath18="ORIGINALCOPY/CARUSE"	/>	<!-- 용도 -->
+	<field name="DC1_LST_ADDR"		length="200"	type="AN"	default=""			xpath18="ORIGINALCOPY/LASTADDRESS"	/>	<!-- 최종 소유자 주소 -->
+	<field name="DC1_LST_OWNM"		length="40"		type="AN"	default=""			xpath18="ORIGINALCOPY/LASTNM"	/>	<!-- 최종 소유자 성명 -->
+	<field name="DC1_LST_REGNO"		length="13"		type="AN"	default=""			xpath18="ORIGINALCOPY/LASTREGNO"	filter="SSN"/>	<!-- 최종 소유자 주민(사업자, 외국인)등록번호 -->
+	<field name="DC1_BSNM_NM"		length="50"		type="AN"	default=""			xpath18="ORIGINALCOPY/BSNMNM"	/>	<!-- 사용본거지 또는 대여회사 -->
+	<field name="DC1_BSNM_ADDR"		length="200"	type="AN"	default=""			xpath18="ORIGINALCOPY/BSNMADDRESS"	/>	<!-- 사용본거지 또는 대여회사 주소-->
+	<field name="DC1_ISV_DT"		length="70"		type="AN"	default=""			xpath18="ORIGINALCOPY/INSVALIDDATE"	/>	<!-- 검사유효기간-->
+	<field name="DC1_REG_CNF_DT"	length="8"		type="AN"	default=""			xpath18="ORIGINALCOPY/REGCNFIRMDATE"	/>	<!-- 등록사항확인일-->
+	<field name="SCAF_ID"			length="12"		type="AN"	default=""			xpath18=""	/>						<!-- scaf_id -->
+	<field name="FLR"				length="100"	type="AN"	default=""			xpath18=""	/>						<!-- 공란 -->
+	<field name="DC1_LST_CNT"		length="3"		type="N"	default=""			xpath18=""	/>						<!-- 등록차량번호 건수 -->
+	<field name="DC2_LST_CNT"		length="3"		type="N"	default=""			xpath18=""	/>						<!-- 갑부상세 건수 -->
+	<field name="DC3_LST_CNT"		length="3"		type="N"	default=""			xpath18=""	/>						<!-- 을부 건수 -->
+	
+	<!-- 등록차량목록 -->
+	<field name="DC1_LST"		type="LST"		loopElement="DC1_LST_CNT"	xpath18="ORIGINALCOPY/CARREG/LISTLOOP/LIST">
+		<field name="DC1_DT_CARNO"		length="20"		type="AN"	default=""		xpath18="CARREGNUM"	/>					<!-- 차량등록번호 -->
+		<field name="DC1_DT_RDT"		length="8"		type="AN"	default=""		xpath18="CARREGDATE"	filter="DATE"/>	<!-- 등록일자 -->
+	</field>
+	
+	<!-- 갑부 상세정보 -->
+	<field name="DC2_LST"		type="LST"		loopElement="DC2_LST_CNT"	xpath18="ORIGINALCOPY/DETAIL/LISTLOOP/LIST">
+		<field name="DC1_DT_M_RKNO"	length="10"		type="AN"	default=""		xpath18="MAINNO"/>						<!-- 순위번호(주등록) -->
+		<field name="DC1_DT_S_RKNO"	length="10"		type="AN"	default=""		xpath18="SUBNO"	/>						<!-- 순위번호(부가등록) -->
+		<field name="DC1_DT_NTC"	length="200"	type="AN"	default=""		xpath18="DESINFO"	/>					<!-- 사항란 -->
+		<field name="DC1_DT_RGNO"	length="13"		type="AN"	default=""		xpath18="REGSENO"	filter="SSN"/>		<!-- 주민(법인)등록번호 -->
+		<field name="DC1_DT_RDT"	length="8"		type="AN"	default=""		xpath18="REGDATE"	filter="DATE"/>		<!-- 등록일 -->
+		<field name="DC1_DT_ACNO"	length="50"		type="AN"	default=""		xpath18="ACCEPTNO"	/>					<!-- 접수번호 -->
+	</field>
+	
+	<!-- 을부 데이타 -->
+	<field name="DC3_LST"			type="LST"		loopElement="DC3_LST_CNT"		xpath18="ABSTRACTCOPY/LISTLOOP/LIST">
+		<field name="DC3_MTG_NO"		length="30"		type="AN"	default=""		xpath18="SCLDGRNO"	/>				<!-- 을부번호 -->
+		<field name="DC3_MTG_ACNO"		length="30"		type="AN"	default=""		xpath18="MRTGRQRCNO"	/>			<!-- 저당권설정 접수번호 -->
+		<field name="DC3_MTG_NM"		length="40"		type="AN"	default=""		xpath18="MRTENAME"	/>				<!-- 저당권자 성명(명칭) -->
+		<field name="DC3_MTG_RGNO"		length="13"		type="AN"	default=""		xpath18="MRTEREGNO"	/>				<!-- 저당권자 주민(사업자) 등록번호 -->
+		<field name="DC3_MTG_ADR"		length="200"	type="AN"	default=""		xpath18="MRTEADDRESS"	/>			<!-- 저당권자 주소 -->
+		<field name="DC3_CFR_NM"		length="40"		type="AN"	default=""		xpath18="OWNERNAME"	/>				<!-- 저당권설정자 성명(명칭) -->
+		<field name="DC3_CFR_ADR"		length="200"	type="AN"	default=""		xpath18="OWNERADDRESS"	/>			<!-- 저당권설정자 주소 -->
+		<field name="DC3_DBR_NM"		length="40"		type="AN"	default=""		xpath18="DEBTRNAME"	/>				<!-- 채무자 성명(명칭) -->
+		<field name="DC3_DBR_ADR"		length="200"	type="AN"	default=""		xpath18="DEBTRADDRESS"	/>			<!-- 채무자 주소 -->
+		<field name="DC3_BND_VAL"		length="15"		type="AN"	default=""		xpath18="CDITAMT"	filter="AMT"/>	<!-- 채권가액 -->
+		<field name="DC3_CF_RDT"		length="8"		type="AN"	default=""		xpath18="ESTBSDATE"	filter="DATE"/>	<!-- 저당권설정일 -->
+		<field name="DC3_CF_TMDT"		length="8"		type="AN"	default=""		xpath18="TRMNATDATE"	filter="DATE"/>	<!-- 저당권말소일 -->
+		<field name="DC3_JN_LST_CNT"	length="3"		type="N"	default=""		xpath18=""	/>						<!-- 공동 자동차등록번호 건수 -->
+
+		<field name="DC3_JN_LST"	type="LST"		loopElement="DC3_JN_LST_CNT"	xpath18="JOINSAVE/LISTLOOP/LIST">
+			<field name="DC3_JN_KN"			length="10"		type="AN"	default=""		xpath18="KIND"	/>				<!-- 종류 -->
+			<field name="DC3_JN_VHCL_NO"	length="20"		type="AN"	default=""		xpath18="CARNO"	/>				<!-- 자동차 번호 -->
+			<field name="DC3_JN_RDT"		length="8"		type="AN"	default=""		xpath18="ESTBSDATE"	filter="DATE"/>	<!-- 설정일 -->
+			<field name="DC3_JN_TMDT"		length="8"		type="AN"	default=""		xpath18="ERSRDATE"	filter="DATE"/>	<!-- 말소일 -->
+		</field>
+	</field>
+	
+</struct>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 하이코리아 외국인등록증 진위여부 -->
+	<element name="JUMIN"     		default=" "/> <!-- 사용자주민등록번호 -->
+	<element name="FOREIGNJUMIN"	mappingElement="SSN"	  	default=""/> <!-- 외국인등록번호 -->
+	<element name="ISSUEDATE" 		mappingElement="PBL_DT" 	default=""/> <!-- 발급일자 -->
+</struct>

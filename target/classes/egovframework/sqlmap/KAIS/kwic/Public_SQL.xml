@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="Public001" resultClass="oMap">
+		/*메뉴조회*/
+		SELECT
+			MNLST_SEQ
+			,MNLST_TP
+			,MNLST_USYN
+			,MNLST_XML
+		FROM TBKW_MNLST
+			WHERE MNLST_TP='1'
+				AND MNLST_USYN='Y'
+	</select>
+	
+	<select id="Public002" resultClass="oMap">
+		/*URI 조회*/
+		SELECT
+			URLST_SEQ
+			,URLST_USYN
+			,URLST_XML
+		FROM TBKW_URLST
+	</select>
+	
+</sqlMap>

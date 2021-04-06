@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errors>
+	
+	<!-- 도로교통공단 운전면허증 진위여부 -->
+	<item SPECIALCODE="0004" MODULE="2" anothers="N999" normal="P000">
+		<error code="N001"><![CDATA[조회 방식을 입력하지 않았습니다.]]></error>
+		<error code="N002"><![CDATA[성명을 입력하지 않았습니다.]]></error>
+		<error code="N052"><![CDATA[발급지역(면허번호)을 입력하지 않았습니다.]]></error>
+		<error code="N053"><![CDATA[발급지역(면허번호)이 정확하지 않습니다.]]></error>
+		<error code="N054"><![CDATA[교부년도(면허번호)를 입력하지 않았습니다.]]></error>
+		<error code="N055"><![CDATA[교부년도(면허번호)가 정확하지 않습니다.]]></error>
+		<error code="N056"><![CDATA[일련번호(면허번호)를 입력하지 않았습니다.]]></error>
+		<error code="N057"><![CDATA[일련번호(면허번호)가 정확하지 않습니다.]]></error>
+		<error code="N058"><![CDATA[면허번호를 입력하지 않았습니다.]]></error>
+		<error code="N059"><![CDATA[면허번호가 정확하지 않습니다.]]></error>
+		<error code="N060"><![CDATA[입력하신 시/도 코드 LNCAREANUMBER(입력값) 은 존재하지 않습니다.]]></error>
+		<error code="N061"><![CDATA[발급지역(면허번호) 입력값을 확인해 주시기 바랍니다.]]></error>
+		<error code="N062"><![CDATA[인적자료(생년월일)를 잘못 입력하였습니다.]]></error>
+		<error code="N063"><![CDATA[인적자료(성명, 주민번호)를 잘못 입력하였습니다.]]></error>
+		<error code="N064"><![CDATA[인적정보를 잘못 입력하였습니다.]]></error>
+		<error code="N065"><![CDATA[암호일련번호가 일치하지 않습니다]]></error>
+		<error code="N066"><![CDATA[면허번호 중간여섯자리를 잘못 입력하셨습니다.]]></error>
+		<error code="N067"><![CDATA[유효하지 않은 면허이거나 면허번호를 잘못 입력하였습니다.]]></error>
+		<error code="N068"><![CDATA[면허번호 끝번호가 일치하지 않습니다.]]></error>
+		<error code="N069"><![CDATA[갱신 이전의 면허번호입니다.]]></error>
+		<error code="N070"><![CDATA[분실된 면허 입니다.]]></error>
+		<error code="N071"><![CDATA[전산 자료와 일치하지 않습니다.]]></error>
+		<error code="N067"><![CDATA[면허번호가 일치하지 않습니다.]]></error>
+		<error code="N069"><![CDATA[재발급 신청 처리된 면허입니다.]]></error>
+	</item>
+	
+	<!-- 민원24 주민등록증 진위여부 -->
+	<item SPECIALCODE="0005" MODULE="5" anothers="N999" normal="P000">
+		<error code="N001"><![CDATA[조회 방식을 입력하지 않았습니다.]]></error>
+		<error code="N002"><![CDATA[성명을 입력하지 않았습니다.]]></error>
+		<error code="N003"><![CDATA[발급일자를 입력하지 않았습니다.]]></error>
+		<error code="N004"><![CDATA[발급일자가 정확하지 않습니다.]]></error>
+		<error code="N005"><![CDATA[해당인증서의 패스워드가 일치하지 않습니다.]]></error>
+		<error code="N006"><![CDATA[해당인증서의 패스워드가 일치하지 않습니다.]]></error>
+		<error code="N007"><![CDATA[공인인증서가 등록되지 않았거나 유효하지 않습니다.]]></error>
+		<error code="N008"><![CDATA[보안문자를 정확히 입력해주시기 바랍니다.]]></error>
+		<error code="N009"><![CDATA[발급일자 입력오류 횟수를 5회 초과 하였습니다.]]></error>
+		<error code="N011"><![CDATA[인적자료(성명, 주민번호)를 잘못 입력하였습니다.]]></error>
+		<error code="N004"><![CDATA[발급일자를 잘못 입력하였습니다.]]></error>
+		<error code="N013"><![CDATA[행정안전부에 등록된 발급일자와 일치하나, 분실된 주민등록증 입니다.]]></error>
+	</item>
+
+	<!-- 자동차등록원부(갑,을,소유자검증) 발급 -->
+	<item SPECIALCODE="0009" MODULE="50" anothers="N999" normal="P000">
+		<error code="N101"><![CDATA[비회원 로그인 회원정보를 입력해주시기 바랍니다.]]></error>
+		<error code="N102"><![CDATA[자동차등록번호를 입력해야 합니다.]]></error>
+		<error code="N002"><![CDATA[소유자성명을 입력해야 합니다.]]></error>
+		<error code="N104"><![CDATA[프린트 여부를 입력하시기 바랍니다.]]></error>
+		<error code="N105"><![CDATA[주민/사업자 여부를 확인하시기 바랍니다.]]></error>
+		<error code="N106"><![CDATA[갑/을 여부를 확인하시기 바랍니다.]]></error>
+		<error code="N107"><![CDATA[소유자 주민번호 공개여부가 공개 이므로 등록번호 종류를 입력해야 합니다.]]></error>
+		<error code="N108"><![CDATA[소유자 주민번호 공개여부가 공개 이므로 소유자 주민번호를 입력해야 합니다.]]></error>
+		<error code="N109"><![CDATA[소유자 주민번호 공개여부 입력값을 확인해 주시기 바랍니다.]]></error>
+		<error code="N110"><![CDATA[필수입력사항이 누락되었습니다.]]></error>
+		<error code="N111"><![CDATA[인증서 비밀번호를 확인해주시기 바랍니다.]]></error>
+		<error code="N112"><![CDATA[인증서가 존재하지 않습니다]]></error>
+		<error code="N113"><![CDATA[공인인증서와 입력하신 주민(외국인)등록번호가 일치하지 않습니다]]></error>
+		<error code="N115"><![CDATA[공인인증서와 입력하신 주민번호가 일치하지 않습니다.]]></error>
+		<error code="N116"><![CDATA[공인인증서와 로그인하신 사용자의 주민번호가 일치하지 않습니다.]]></error>
+		<error code="N118"><![CDATA[소유자 정보가 맞지 않습니다.]]></error>
+		<error code="N120"><![CDATA[을부 원부가 존재 하지 않습니다.]]></error>
+		<error code="N122"><![CDATA[성명과 주민번호가 불일치 합니다.]]></error>
+		<error code="N124"><![CDATA[신청구분 입력값을 확인해주시기 바랍니다.]]></error>
+	</item>
+	
+	<!-- 민원24 주민등록등초본발급이력조회(온라인) -->
+	<item SPECIALCODE="0019" MODULE="6" anothers="N999" normal="P000">
+		<error code="N150"><![CDATA[업무구분 입력필드는 필수입니다.]]></error>
+		<error code="N151"><![CDATA[문서확인번호 입력필드는 필수입니다.]]></error>
+		<error code="N152"><![CDATA[문서확인키 입력필드는 필수입니다.]]></error>
+		<error code="N153"><![CDATA[모듈 번호를 확인해 주시기 바랍니다.]]></error>
+		<error code="N154"><![CDATA[필수 스크래핑 모듈이 등록되지 않았습니다]]></error>
+		<error code="N155"><![CDATA[일시적인장애가 발생하였습니다.]]></error>
+		<error code="N156"><![CDATA[필수보안프로그램이 설치되어있지 않습니다.]]></error>
+		<error code="N157"><![CDATA[문서확인번호를 입력해주시기 바랍니다.]]></error>
+		<error code="N158"><![CDATA[문서확인키를 입력해주시기 바랍니다.]]></error>
+		<error code="N159"><![CDATA[문서확인키를 정확히 입력해주시기 바랍니다.]]></error>
+		<error code="N160"><![CDATA[해당 문서가 존재하지 않습니다.]]></error>
+		<error code="N161"><![CDATA[열람기간이 지난 문서입니다.]]></error>
+		<error code="N162"><![CDATA[온라인진위여부조회 중 오류가 발생하였습니다.]]></error>
+	</item>
+	
+	<!-- 민원24 주민등록등초본발급이력조회(오프라인) -->
+	<item SPECIALCODE="0025" MODULE="9" anothers="N999" normal="P000">
+		<error code="N150"><![CDATA[업무구분 입력필드는 필수입니다.]]></error>
+		<error code="N154"><![CDATA[필수 스크래핑 모듈이 등록되지 않았습니다]]></error>
+		<error code="N156"><![CDATA[필수보안프로그램이 설치되어있지 않습니다.]]></error>
+		<error code="N170"><![CDATA[발급확인번호 입력필드는 필수입니다.]]></error>
+		<error code="N171"><![CDATA[발급일자 입력필드는 필수입니다.]]></error>
+		<error code="N172"><![CDATA[발급확인키 입력필드는 필수입니다.]]></error>
+		<error code="N173"><![CDATA[발급확인번호를 입력해주시기 바랍니다.]]></error>
+		<error code="N174"><![CDATA[발급일자를 입력해주시기 바랍니다.]]></error>
+		<error code="N175"><![CDATA[발급확인키를 입력해주시기 바랍니다.]]></error>
+		<error code="N176"><![CDATA[현재 일자에서 90일 이전 발급일자는 확인 불가능 합니다.]]></error>
+		<error code="N177"><![CDATA[입력하신 내용으로 발급한 사실이 없습니다]]></error>
+		<error code="N178"><![CDATA[등초본(오프라인)진위여부조회 중 오류가 발생하였습니다.]]></error>
+		<error code="N179"><![CDATA[CAPTCHAURL를 입력해주시기 바랍니다.]]></error>
+		<error code="N180"><![CDATA[CAPTCHAURL은 보안문자 자동 선택시 필수 입력값입니다.]]></error>
+		<error code="N181"><![CDATA[기웅해석서버장애 [통신장애]]]></error>
+		<error code="N182"><![CDATA[자동입력 방지문자가 잘못되었습니다.]]></error>
+		<error code="N183"><![CDATA[보안문자 처리에 실패했습니다.]]></error>
+		<error code="N184"><![CDATA[보안문자를 정확히 입력해주시기 바랍니다.]]></error>
+	</item>
+	
+	<!-- 민원24 인감증명서발급사실확인 -->
+	<item SPECIALCODE="0008" MODULE="4" anothers="N999" normal="P000">
+		<error code="N154"><![CDATA[필수 스크래핑 모듈이 등록되지 않았습니다]]></error>
+		<error code="N156"><![CDATA[필수보안프로그램이 설치되어있지 않습니다.]]></error>
+		<error code="N174"><![CDATA[발급일자를 입력해주시기 바랍니다.]]></error>
+		<error code="N190"><![CDATA[주민등록번호 입력필드는 필수입니다.]]></error>
+		<error code="N191"><![CDATA[발급기관 입력필드는 필수입니다.]]></error>
+		<error code="N192"><![CDATA[확인용발급번호1 입력필드는 필수입니다.]]></error>
+		<error code="N193"><![CDATA[확인용발급번호2 입력필드는 필수입니다.]]></error>
+		<error code="N194"><![CDATA[확인용발급번호3 입력필드는 필수입니다.]]></error>
+		<error code="N195"><![CDATA[주민등록번호를 입력해주시기 바랍니다.]]></error>
+		<error code="N196"><![CDATA[발급기관을 입력해주시기 바랍니다.]]></error>
+		<error code="N197"><![CDATA[확인용발급번호1를 입력해주시기 바랍니다.]]></error>
+		<error code="N198"><![CDATA[확인용발급번호2를 입력해주시기 바랍니다.]]></error>
+		<error code="N199"><![CDATA[확인용발급번호3를 입력해주시기 바랍니다.]]></error>
+		<error code="N200"><![CDATA[발급일자를 정확히 입력해주시기 바랍니다.]]></error>
+		<error code="N201"><![CDATA[해당 검색어에 해당하는 기관코드가 존재하지 않습니다.]]></error>
+		<error code="N202"><![CDATA[죄송합니다. 요청하신 서비스가 정상 처리되지 않았습니다.]]></error>
+		<error code="N203"><![CDATA[해당시군구에서 응답이 없습니다. 시군 에러코드[-403]]]></error>
+		<error code="N204"><![CDATA[일일 입력 오류횟수(5회) 초과입니다. 더이상 당일 조회가 불가합니다.]]></error>
+		<error code="N205"><![CDATA[입력한 내용은 발급된 내용과 일치하지 않습니다.]]></error>
+		<error code="N206"><![CDATA[인감증명서 진위여부조회 중 오류가 발생하였습니다.]]></error>
+	</item>
+</errors>

@@ -1,0 +1,202 @@
+<%@ page contentType="text/html;charset=UTF-8" errorPage = "/WEB-INF/jsp/common/error.jsp"%><%@
+page import="com.kwic.xml.parser.JXParser"%><%@
+page import="java.util.Map"%><%@
+page import="java.util.HashMap"%><%@
+page import="java.util.List"%><%@
+page import="java.util.ArrayList"%><%@
+page import="org.dom4j.Element"%><%
+
+try{
+	if(mgrRec!=null && mgrRec.getMenuxml()!=null){
+		JXParser menuJxp	= new JXParser(mgrRec.getMenuxml());
+		if(menuId==null)
+			menuId	= "";
+		StringBuffer menuSb	= new StringBuffer();
+		menuSb.append("				<li style='text-align:right;'>");
+		menuSb.append("					<a href='javascript:fn_logout();'>");
+		menuSb.append("						<span class='title'>["+mgrRec.getMgrinf_nm()+"] 로그아웃</span>");
+		menuSb.append("					</a>");
+		menuSb.append("				</li>");
+
+		java.util.List<Map<String,String>> menuTree	= new ArrayList<Map<String,String>>();
+		Map<String,String> menuInfo	= null;
+
+		boolean firstOpen	= menuJxp.getElement("//S-MENU[@ID='"+menuId+"']")==null?true:false;
+		Element[] bMenus	= menuJxp.getElements("//B-MENU");
+		Element[] mMenus	= null;
+		Element[] sMenus	= null;
+		//대메뉴
+		for(int i=0;i<bMenus.length;i++){
+			if(menuJxp.getElement(bMenus[i], "M-MENU/S-MENU[@ID='"+menuId+"']")!=null ){
+				menuInfo	= new HashMap<String,String>();
+				menuInfo.put("URL",menuJxp.getAttribute(bMenus[i],"URL"));
+				menuInfo.put("NM",menuJxp.getAttribute(bMenus[i],"NM"));
+				menuTree.add(menuInfo);
+			}
+
+			menuSb.append("				<li class='"+((menuJxp.getElement(bMenus[i], "M-MENU/S-MENU[@ID='"+menuId+"']")!=null || (i==0 && firstOpen))?"opened active ":"")+"has-sub'>");
+			menuSb.append("					<a href='"+menuJxp.getAttribute(bMenus[i],"URL")+"'>");
+			menuSb.append("						<i class='entypo-gauge'></i>");
+			menuSb.append("						<span class='title'>"+menuJxp.getAttribute(bMenus[i],"NM")+"</span>");
+			menuSb.append("					</a>");
+
+			mMenus	= menuJxp.getElements(bMenus[i],"M-MENU");
+			menuSb.append("					<ul>");
+
+			//중메뉴
+			for(int j=0;j<mMenus.length;j++){
+
+				sMenus	= menuJxp.getElements(mMenus[j],"S-MENU");
+				if(sMenus.length>1){
+					if(menuJxp.getElement(mMenus[j], "S-MENU[@ID='"+menuId+"']")!=null){
+						menuInfo	= new HashMap<String,String>();
+						menuInfo.put("URL",menuJxp.getAttribute(mMenus[j],"URL"));
+						menuInfo.put("NM",menuJxp.getAttribute(mMenus[j],"NM"));
+						menuTree.add(menuInfo);
+					}
+					menuSb.append("						<li class='"+((menuJxp.getElement(mMenus[j], "S-MENU[@ID='"+menuId+"']")!=null)?"opened active ":"")+"has-sub'>");
+					menuSb.append("							<a href='"+menuJxp.getAttribute(mMenus[j],"URL")+"'>");
+					menuSb.append("								<span class='title'>"+menuJxp.getAttribute(mMenus[j],"NM")+"</span>");
+					menuSb.append("							</a>");
+
+					menuSb.append("							<ul>");
+					for(int k=0;k<sMenus.length;k++){
+						if(menuId.equals(menuJxp.getAttribute(sMenus[k],"ID"))){
+							menuInfo	= new HashMap<String,String>();
+							menuInfo.put("URL",menuJxp.getAttribute(sMenus[k],"URL"));
+							menuInfo.put("NM",menuJxp.getAttribute(sMenus[k],"NM"));
+							menuTree.add(menuInfo);
+						}
+						menuSb.append("								<li class='"+(menuId.equals(menuJxp.getAttribute(sMenus[k],"ID"))?"active":"")+"'>");
+						menuSb.append("									<a href='"+menuJxp.getAttribute(sMenus[k],"URL")+"'>");
+						menuSb.append("										<span class='title'>"+menuJxp.getAttribute(sMenus[k],"NM")+"</span>");
+						menuSb.append("									</a>");
+						menuSb.append("								</li>");
+										}
+						menuSb.append("							</ul>");
+						menuSb.append("						</li>");
+
+				}else if(sMenus.length==1){
+					if(menuId.equals(menuJxp.getAttribute(sMenus[0],"ID"))){
+						menuInfo	= new HashMap<String,String>();
+						menuInfo.put("URL",menuJxp.getAttribute(mMenus[j],"URL"));
+						menuInfo.put("NM",menuJxp.getAttribute(mMenus[j],"NM"));
+						menuTree.add(menuInfo);
+					}
+
+					menuSb.append("						<li class='"+(menuId.equals(menuJxp.getAttribute(sMenus[0],"ID"))?"active":"")+"'>");
+					menuSb.append("							<a href='"+menuJxp.getAttribute(mMenus[j],"URL")+"'>");
+					menuSb.append("								<span class='title'>"+menuJxp.getAttribute(mMenus[j],"NM")+"</span>");
+					menuSb.append("							</a>");
+					menuSb.append("						</li>");
+				}
+			}
+			menuSb.append("					</ul>");
+			menuSb.append("				</li>");
+		}
+
+		boolean canLink	= true;
+		if(menuTree.size()==0){
+			canLink	= false;
+			JXParser fullMenuJxp	= new JXParser(mgrRec.getMenufullxml());
+			Element menu	= fullMenuJxp.getElement("//S-MENU[@ID='"+menuId+"']");
+			if(menu!=null){
+				menuInfo	= new HashMap<String,String>();
+				menuInfo.put("URL",menuJxp.getAttribute(menu,"URL"));
+				menuInfo.put("NM",menuJxp.getAttribute(menu,"NM"));
+				menuTree.add(0,menuInfo);
+
+				menu	= menu.getParent();
+				menuInfo	= new HashMap<String,String>();
+				menuInfo.put("URL",menuJxp.getAttribute(menu,"URL"));
+				menuInfo.put("NM",menuJxp.getAttribute(menu,"NM"));
+				menuTree.add(0,menuInfo);
+
+				menu	= menu.getParent();
+				menuInfo	= new HashMap<String,String>();
+				menuInfo.put("URL",menuJxp.getAttribute(menu,"URL"));
+				menuInfo.put("NM",menuJxp.getAttribute(menu,"NM"));
+				menuTree.add(0,menuInfo);
+			}
+		}
+
+		StringBuffer titleSb	= new StringBuffer();
+		StringBuffer naviSb	= new StringBuffer();
+		for(int i=menuTree.size()-1;i>=0;i--){
+			titleSb.append(titleSb.length()==0?"":" | ").append(menuTree.get(i).get("NM"));
+		}
+		titleSb.append(titleSb.length()==0?"":" | ").append("KWIC");
+		for(int i=0;i<menuTree.size();i++){
+			naviSb.append("<li><a href=\""+((i==menuTree.size()-1 && !canLink)?"#":menuTree.get(i).get("URL"))+"\">"+menuTree.get(i).get("NM")+"</a></li>");
+		}
+%>
+	<title><%=titleSb.toString()%></title>
+</head>
+<body class="page-body skin-blue">
+
+<div class="page-container">
+	<div class="sidebar-menu">
+		<div class="sidebar-menu-inner">
+			<header class="logo-env">
+
+				<!-- logo -->
+				<div class="logo">
+					<a href="/kwic/">
+						<img src="<%=IMG_PATH%>kwic-logo-cs.png" width="120" alt="" />
+					</a>
+				</div>
+
+				<!-- logo collapse icon -->
+				<div class="sidebar-collapse">
+					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+
+				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+				<div class="sidebar-mobile-menu visible-xs">
+					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+			</header>
+
+			<!--<div class="sidebar-user-info">
+				<div class="sui-normal">
+					<a href="#" class="user-link">
+						<span><%=mgrRec.getMgrinf_nm() %> (<%=mgrRec.getMgrinf_grd_nm() %>)</span>
+					</a>
+					<a href="javascript:fn_logout();" class="user-link">
+						<span>logout</span>
+					</a>
+				</div>
+			</div>-->
+			<ul id="main-menu" class="main-menu">
+<%=menuSb.toString()%>
+			</ul>
+
+		</div>
+	</div>
+<script type="text/javascript">
+function fn_logout(){
+	$(location).attr('href','/ADM_LGN_01010A/');
+}
+</script>
+
+	<div class="main-content">
+
+		<ol class="breadcrumb bc-3" >
+			<li><a href="/kwic/"><i class="fa-home"></i>Home</a></li>
+			<%=naviSb.toString()%>
+		</ol>
+
+		<h2><%=menuTree.size()>0?menuTree.get(menuTree.size()-1).get("NM"):"" %></h2>
+		<br/>
+
+<%
+		}
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+%>

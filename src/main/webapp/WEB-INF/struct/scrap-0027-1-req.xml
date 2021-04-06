@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 차량전손횟수 조회  -->
+	<element name="CARNUM"     	mappingElement="VHCL_NO"	  	default=""/> <!-- 차량번호 -->
+</struct>

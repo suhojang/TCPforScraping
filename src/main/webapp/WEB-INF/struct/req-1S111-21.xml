@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 운전면허 진위요청 -->
+	<field name="SCAF_ID"	length="12"	  type="AN"	default=""/> <!-- scaf ID -->
+	<field name="BRTH"		length="6"	  type="AN"	default=""/> <!-- 생년월일 -->
+	<field name="NM"		length="20"	  type="AN"	default=""/> <!-- 성명 -->
+	<field name="LC_NO1"	length="10"	  type="AN"	default=""/> <!-- 면허번호(발급지역) -->
+	<field name="LC_NO2"	length="2"	  type="AN"	default=""/> <!-- 면허번호(교부년도) -->
+	<field name="LC_NO3"	length="6"	  type="AN"	default=""/> <!-- 면허번호(일련번호) -->
+	<field name="LC_NO4"	length="2"	  type="AN"	default=""/> <!-- 면허번호(재교부횟수) -->
+	<field name="FLR"		length="140"  type="AN"	default=""/> <!-- 공란 -->
+</struct>

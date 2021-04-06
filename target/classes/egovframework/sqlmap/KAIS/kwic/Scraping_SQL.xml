@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="CHECK_YYMM_NCRQ" resultClass="oMap" parameterClass="java.util.Map">
+		/*해당월의 NICE 스크래핑 요청 테이블 생성여부 확인*/
+		SELECT TABLENAME
+		 FROM PG_TABLES
+		 WHERE TABLENAME = 'tbkw_ncrq_' || #YYMM#
+	</select>
+	
+	<select id="CHECK_YYMM_SCDL" resultClass="oMap" parameterClass="java.util.Map">
+		/*해당월의 스크래핑 처리 상세 테이블 생성여부 확인*/
+		SELECT TABLENAME
+		 FROM PG_TABLES
+		 WHERE TABLENAME = 'tbkw_scdl_' || #YYMM#
+	</select>
+
+	<statement id="CREATE_YYMM_NCRQ_TBL" parameterClass="java.util.Map">
+		/*해당월의 nice 스크래핑 요청 테이블 생성*/
+		CREATE TABLE TBKW_NCRQ_$YYMM$ (
+			  NCRQ_SEQ	    VARCHAR(17)	 NOT NULL
+			, NCRQ_BZCD	    VARCHAR(5)	 NOT NULL
+			, NCRQ_TL_NO	VARCHAR(10)	 NOT NULL
+			, NCRQ_ORG_ID	VARCHAR(9)
+			, NCRQ_INF_CNT	NUMERIC(3,0) NOT NULL
+			, NCRQ_STS	    VARCHAR(2)	 NOT NULL
+			, NCRQ_RTCD	    VARCHAR(4)
+			, NCRQ_RTMSG	VARCHAR(500)
+			, NCRQ_SCRQ	    TEXT		 NOT NULL
+			, NCRQ_SCRS	    TEXT
+			, NCRQ_RQTM	    VARCHAR(14)	 NOT NULL
+			, NCRQ_RSTM	    VARCHAR(14)
+			, NCRQ_RDT	    TIMESTAMP	 NOT NULL	DEFAULT NOW()
+
+			, CONSTRAINT KW_NCRQ_$YYMM$_PK PRIMARY KEY(NCRQ_SEQ)
+		)
+	</statement>
+	
+	<statement id="CREATE_YYMM_NCRQ_IDX1" parameterClass="java.util.Map">
+		/*해당월의 nice 스크래핑 요청 테이블 생성*/
+		CREATE INDEX IDX_KW_NCRQ_$YYMM$_STS ON TBKW_NCRQ_$YYMM$(NCRQ_STS)
+	</statement>
+	
+	<statement id="CREATE_YYMM_NCRQ_IDX2" parameterClass="java.util.Map">
+		/*해당월의 nice 스크래핑 요청 테이블 생성*/
+		CREATE INDEX IDX_KW_NCRQ_$YYMM$_RTCD ON TBKW_NCRQ_$YYMM$(NCRQ_RTCD)
+	</statement>
+	
+	<statement id="CREATE_YYMM_NCRQ_IDX3" parameterClass="java.util.Map">
+		/*해당월의 nice 스크래핑 요청 테이블 생성*/
+		CREATE INDEX IDX_KW_NCRQ_$YYMM$_RQTM ON TBKW_NCRQ_$YYMM$(NCRQ_RQTM)
+	</statement>
+
+	<statement id="CREATE_YYMM_SCDL_TBL" parameterClass="java.util.Map">
+		/*해당월의 스크래핑 처리 상세 테이블 생성*/
+		CREATE TABLE TBKW_SCDL_$YYMM$ (
+			  SCDL_SEQ	    VARCHAR(20)	  NOT NULL
+			, NCRQ_SEQ	    VARCHAR(18)	  NOT NULL
+			, SCDL_MBRNO	VARCHAR(20)
+			, SCDL_G_BZCD	VARCHAR(2)	  NOT NULL
+			, SCDL_BZCD	    VARCHAR(4)	  NOT NULL
+			, SCDL_JBCD	    VARCHAR(3)	  NOT NULL
+			, SCDL_SCAF_ID	VARCHAR(12)	  NOT NULL
+			, SCDL_STS	    VARCHAR(2)	  NOT NULL
+			, SCDL_SVMK	    VARCHAR(2)
+			, SCDL_CNT	    NUMERIC(1,0)  NOT NULL	DEFAULT 0
+			, SCDL_CNT2	    NUMERIC(1,0)  NOT NULL	DEFAULT 0
+			, SCDL_CNT3	    NUMERIC(1,0)  NOT NULL	DEFAULT 0
+			, SCDL_CNT4	    NUMERIC(1,0)  NOT NULL	DEFAULT 0
+			, SCDL_RTCD	    VARCHAR(4)
+			, SCDL_RTMSG	VARCHAR(500)
+			, SCDL_RTCD2	VARCHAR(4)
+			, SCDL_RTMSG2	VARCHAR(500)
+			, SCDL_FTPMSG	VARCHAR(500)
+			, SCDL_NRTCD	VARCHAR(4)
+			, SCDL_NRLCD	VARCHAR(4)
+			, SCDL_FTPCD	VARCHAR(4)
+			, SCDL_OSTR	    TEXT		  NOT NULL
+			, SCDL_ABRQ	    TEXT
+			, SCDL_ABRS	    TEXT
+			, SCDL_ABIP	    VARCHAR(30)
+			, SCDL_XMLDATA	TEXT
+			, SCDL_RTRQ	    TEXT
+			, SCDL_RTRS	    TEXT
+			, SCDL_AFRQ	    TEXT
+			, SCDL_AFRS	    TEXT
+			, SCDL_AFIP	    VARCHAR(30)
+			, SCDL_LTRQ	    TEXT
+			, SCDL_LTRS	    TEXT
+			, SCDL_WATM	    VARCHAR(14)
+			, SCDL_WNTM	    VARCHAR(14)
+			, SCDL_WLTM	    VARCHAR(14)
+			, SCDL_AQTM	    VARCHAR(14)
+			, SCDL_ASTM	    VARCHAR(14)
+			, SCDL_NQTM	    VARCHAR(14)
+			, SCDL_NSTM	    VARCHAR(14)
+			, SCDL_AFQTM	VARCHAR(14)
+			, SCDL_AFSTM	VARCHAR(14)
+			, SCDL_LQTM	    VARCHAR(14)
+			, SCDL_LSTM	    VARCHAR(14)
+			, SCDL_ER_CK_BT	VARCHAR(100)
+			, SCDL_ER_RTCD	VARCHAR(4)
+			, SCDL_RDT	    TIMESTAMP	  NOT NULL	DEFAULT NOW()
+
+			,CONSTRAINT KW_SCDL_$YYMM$_PK PRIMARY KEY(SCDL_SEQ)
+		)
+	</statement>
+	
+	<statement id="CREATE_YYMM_SCDL_IDX1" parameterClass="java.util.Map">
+		/*해당월의 스크래핑 처리 상세 테이블 인덱스 생성*/
+		CREATE INDEX IDX_KW_SCDL_$YYMM$_G_BZCD ON TBKW_SCDL_$YYMM$(SCDL_G_BZCD)
+	</statement>
+	
+	<statement id="CREATE_YYMM_SCDL_IDX2" parameterClass="java.util.Map">
+		/*해당월의 스크래핑 처리 상세 테이블 인덱스 생성*/
+		CREATE INDEX IDX_KW_SCDL_$YYMM$_BZCD_JBCD ON TBKW_SCDL_$YYMM$(SCDL_BZCD,SCDL_JBCD)
+	</statement>
+	
+	<statement id="CREATE_YYMM_SCDL_IDX3" parameterClass="java.util.Map">
+		/*해당월의 스크래핑 처리 상세 테이블 인덱스 생성*/
+		CREATE INDEX IDX_KW_SCDL_$YYMM$_STS ON TBKW_SCDL_$YYMM$(SCDL_STS)
+	</statement>
+	
+	<statement id="CREATE_YYMM_SCDL_IDX4" parameterClass="java.util.Map">
+		/*해당월의 스크래핑 처리 상세 테이블 인덱스 생성*/
+		CREATE INDEX IDX_KW_SCDL_$YYMM$_RTCD ON TBKW_SCDL_$YYMM$(SCDL_RTCD)
+	</statement>
+
+	<select id="NEXTVAL" resultClass="oMap">
+		SELECT NEXTVAL(#SEQUENCE#) AS SEQ
+	</select>
+
+	<insert id="INSERT_REQUEST_NCRQER" parameterClass="java.util.Map">
+		/*응답불가 오류건 저장*/
+		INSERT INTO TBKW_NCRQER (
+			  NCRQER_RTCD
+			, NCRQER_RTMSG
+			, NCRQER_SCRQ
+			, NCRQER_RDT
+		) VALUES (
+			  #NCRQER_RTCD#
+			, #NCRQER_RTMSG#
+			, #NCRQER_SCRQ#
+			, NOW()
+		)
+	</insert>
+
+	<insert id="INSERT_REQUEST_NCRQ" parameterClass="java.util.Map">
+		INSERT INTO TBKW_NCRQ_$YYMM$ (
+			  NCRQ_SEQ
+			, NCRQ_BZCD
+			, NCRQ_ORG_ID
+			, NCRQ_TL_NO
+			, NCRQ_INF_CNT
+			, NCRQ_STS
+			, NCRQ_SCRQ
+			, NCRQ_RQTM
+			, NCRQ_RDT
+		) VALUES (
+			  #NCRQ_SEQ#
+			, #NCRQ_BZCD#
+			, #NCRQ_ORG_ID#
+			, #NCRQ_TL_NO#
+			, TO_NUMBER(#NCRQ_INF_CNT#, 'FM99999999999')
+			, #NCRQ_STS#
+			, #NCRQ_SCRQ#
+			, #NCRQ_RQTM#
+			, NOW()
+		)
+	</insert>
+	
+	<update id="UPDATE_REQUEST_NCRQ" parameterClass="java.util.Map">
+		/* NICE 스크래핑 요청에 대한 결과 저장 */
+		UPDATE TBKW_NCRQ_$YYMM$ 
+		   SET
+			  NCRQ_STS	 = #NCRQ_STS#
+			, NCRQ_RTCD  = #NCRQ_RTCD#
+			, NCRQ_RTMSG = #NCRQ_RTMSG#
+			, NCRQ_SCRS  = #NCRQ_SCRS#
+			, NCRQ_RSTM  = #NCRQ_RSTM#
+		WHERE NCRQ_SEQ   = #NCRQ_SEQ#
+	</update>
+	
+	<insert id="INSERT_REQUEST_SCDL" parameterClass="java.util.Map">
+		INSERT INTO TBKW_SCDL_$YYMM$ (
+			  SCDL_SEQ
+			, NCRQ_SEQ
+			, SCDL_MBRNO
+			, SCDL_G_BZCD
+			, SCDL_BZCD
+			, SCDL_JBCD
+			, SCDL_SCAF_ID
+			, SCDL_STS
+			, SCDL_CNT
+			, SCDL_OSTR
+			, SCDL_RDT
+		)VALUES(
+			  #SCDL_SEQ#
+			, #NCRQ_SEQ#
+			, #SCDL_MBRNO#
+			, #SCDL_G_BZCD#
+			, #SCDL_BZCD#
+			, #SCDL_JBCD#
+			, #SCDL_SCAF_ID#
+			, #SCDL_STS#
+			, 0
+			, #SCDL_OSTR#
+			, NOW()
+		)
+	</insert>
+
+	<select id="SELECT_REQUEST_AIB_LIST" parameterClass="java.util.Map" resultClass="oMap">
+	<!-- 스크래핑 요청 처리상태  A0 AIB요청 대상 
+		 스크래핑 요청횟수 3회 미만
+	 -->
+	<![CDATA[
+		/* AIB 스크래핑 요청 대상 데이터 조회(현재월+이전월 동시처리) - 조회 */
+		SELECT
+			  SCDL_SEQ
+			, NCRQ_SEQ
+			, NCRQ_ORG_ID
+			, NCRQ_BZCD
+			, SCDL_G_BZCD
+			, SCDL_BZCD
+			, SCDL_JBCD
+			, SCDL_OSTR
+			, YYMM
+			, SCDL_CNT
+			, SCDL_RDT
+		FROM
+		(
+			SELECT
+				  RANK() OVER(ORDER BY A.SCDL_RDT ASC) AS NO
+				, SCDL_SEQ
+				, NCRQ_SEQ
+				, NCRQ_ORG_ID
+				, NCRQ_BZCD
+				, SCDL_G_BZCD
+				, SCDL_BZCD
+				, SCDL_JBCD
+				, SCDL_OSTR
+				, YYMM
+				, SCDL_CNT
+				, SCDL_RDT
+			FROM (
+				/*현재 월*/
+				SELECT
+					  SCDL_SEQ
+					, A.NCRQ_SEQ
+					, NCRQ_ORG_ID
+					, NCRQ_BZCD
+					, SCDL_G_BZCD
+					, SCDL_BZCD
+					, SCDL_JBCD
+					, SCDL_OSTR
+					, #YYMM# AS YYMM
+					, TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					, SCDL_CNT
+				FROM TBKW_SCDL_$YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT < TO_NUMBER(#RETRY_CNT#, '9')
+
+				UNION ALL
+
+				/*이전 월*/
+				SELECT
+					  SCDL_SEQ
+					, A.NCRQ_SEQ
+					, NCRQ_ORG_ID
+					, NCRQ_BZCD
+					, SCDL_G_BZCD
+					, SCDL_BZCD
+					, SCDL_JBCD
+					, SCDL_OSTR
+					, #BF_YYMM# AS YYMM
+					, TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					, SCDL_CNT
+				FROM TBKW_SCDL_$BF_YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT < TO_NUMBER(#RETRY_CNT#, '9')
+			)A
+		)A
+		WHERE NO <= TO_NUMBER(#POOL_SIZE#,'FM99999999999')
+	]]></select>
+	
+	<update id="UPDATE_REQUEST_AIB" parameterClass="java.util.Map">
+	<!-- 스크래핑 요청 처리상태  AA AIB요청 대상 지정  -->
+	<![CDATA[
+		/* AIB 스크래핑 요청 대상 데이터 조회(현재월+이전월 2회 호출)- 조회 대상 지정 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS  = #SCDL_STS#
+			, SCDL_CNT  = SCDL_CNT + 1
+			, SCDL_SVMK = #SCDL_SVMK#
+			, SCDL_WATM = TO_CHAR(NOW(),'YYYYMMDDHH24MISS')
+		WHERE SCDL_SEQ  = #SCDL_SEQ#
+	]]></update>
+
+	<update id="SAVE_RESPONSE_AIB" parameterClass="java.util.Map">
+	<![CDATA[
+		/* AIB 스크래핑 응답결과를 DB에 저장 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS   = #SCDL_STS#
+			, SCDL_RTCD  = #SCDL_RTCD#
+			, SCDL_RTMSG = #SCDL_RTMSG#
+			, SCDL_ABRQ  = #SCDL_ABRQ#
+			, SCDL_ABRS  = #SCDL_ABRS#
+			, SCDL_ABIP  = #SCDL_ABIP#
+			, SCDL_XMLDATA	= #SCDL_XMLDATA#
+			, SCDL_AQTM  = #SCDL_AQTM#
+			, SCDL_ASTM  = #SCDL_ASTM#
+	]]>
+	<isNotEmpty property="TRY_CNT">
+		, SCDL_CNT  = CAST(#TRY_CNT# AS NUMERIC)
+	</isNotEmpty>
+	<![CDATA[		
+		WHERE SCDL_SEQ   = #SCDL_SEQ#
+	]]>
+	</update>
+
+	<select id="SELECT_REQUEST_NICE_LIST" parameterClass="java.util.Map" resultClass="oMap">
+<!-- 스크래핑 요청 처리상태  R0 NICE정보등록 대상 -->
+	<![CDATA[
+		/* NICE 정보등록 요청 대상 SCDL_ABRS
+		 * 데이터 조회(현재월+이전월 동시처리) - 1단계 : 조회 */
+		SELECT
+			  SCDL_SEQ
+			, SCDL_MBRNO
+			, NCRQ_BZCD
+			, NCRQ_ORG_ID
+			, SCDL_G_BZCD
+			, SCDL_BZCD
+			, SCDL_JBCD
+			, SCDL_ABRQ
+			, SCDL_ABRS
+			, SCDL_SCAF_ID
+			, SCDL_RTCD
+			, YYMM
+			, SCDL_CNT2
+			, SCDL_OSTR
+		FROM
+		(
+			SELECT
+				  RANK() OVER(ORDER BY A.SCDL_RDT ASC) AS NO
+				, SCDL_SEQ
+				, SCDL_MBRNO
+				, NCRQ_BZCD
+				, NCRQ_ORG_ID
+				, SCDL_G_BZCD
+				, SCDL_BZCD
+				, SCDL_JBCD
+				, SCDL_ABRQ
+				, SCDL_ABRS
+				, SCDL_SCAF_ID
+				, SCDL_RTCD
+				, YYMM
+				, SCDL_CNT2
+				, SCDL_OSTR
+			FROM (
+				/*현재 월*/
+				SELECT
+					  SCDL_SEQ
+					, SCDL_MBRNO
+					, NCRQ_BZCD
+					, NCRQ_ORG_ID
+					, SCDL_G_BZCD
+					, SCDL_BZCD
+					, SCDL_JBCD
+				    , SCDL_ABRQ
+					, SCDL_ABRS
+					, SCDL_SCAF_ID
+					, SCDL_RTCD
+					, #YYMM# AS YYMM
+					, TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					, SCDL_CNT2
+					, SCDL_OSTR
+				FROM TBKW_SCDL_$YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT2 < TO_NUMBER(#RETRY_CNT#, '9')
+
+				UNION ALL
+
+				/*이전 월*/
+				SELECT
+					SCDL_SEQ
+					,SCDL_MBRNO
+					,NCRQ_BZCD
+					,NCRQ_ORG_ID
+					,SCDL_G_BZCD
+					,SCDL_BZCD
+					,SCDL_JBCD
+			        ,SCDL_ABRQ
+					,SCDL_ABRS
+					,SCDL_SCAF_ID
+					,SCDL_RTCD
+					,#BF_YYMM# AS YYMM
+					,TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					,SCDL_CNT2
+					,SCDL_OSTR
+				FROM TBKW_SCDL_$BF_YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT2 < TO_NUMBER(#RETRY_CNT#, '9')
+			)A
+		)A
+		WHERE NO <= TO_NUMBER(#POOL_SIZE#,'FM99999999999')
+	]]>
+</select>
+	
+	<update id="UPDATE_REQUEST_NICE" parameterClass="java.util.Map">
+	<!-- 스크래핑 요청 처리상태  RR NICE정보등록 대상 지정 -->
+	<![CDATA[
+		/* NICE 정보등록 요청 대상 데이터 조회(현재월+이전월 2회 호출)- 2단계 : 조회 대상 지정 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS  = #SCDL_STS#
+			, SCDL_CNT2 = SCDL_CNT2 + 1
+			, SCDL_SVMK = #SCDL_SVMK#
+			, SCDL_WNTM = TO_CHAR(NOW(),'YYYYMMDDHH24MISS')
+		WHERE SCDL_SEQ  = #SCDL_SEQ#
+	]]>
+	</update>
+	
+	<update id="SAVE_RESPONSE_NICE" parameterClass="java.util.Map">
+	<![CDATA[
+		/* NICE 정보등록 응답결과를 db에 저장 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS      = #SCDL_STS#
+			, SCDL_NRTCD    = #SCDL_NRTCD#
+			, SCDL_RTRQ     = #SCDL_RTRQ#
+			, SCDL_RTRS     = #SCDL_RTRS#
+			, SCDL_NQTM     = #SCDL_NQTM#
+			, SCDL_NSTM     = #SCDL_NSTM#
+			, SCDL_ER_CK_BT	= #SCDL_ER_CK_BT#
+			, SCDL_ER_RTCD	= #SCDL_ER_RTCD#
+			, SCDL_FTPCD	= #SCDL_FTPCD#
+			, SCDL_FTPMSG	= #SCDL_FTPMSG#
+		WHERE SCDL_SEQ = #SCDL_SEQ#
+	]]>
+	</update>
+
+	<update id="REMOVE_OLD_REQUEST" parameterClass="java.util.Map">
+	<!-- 스크래핑 요청 처리상태 E0 처리불가 -->
+	<![CDATA[
+		/*처리시간 초과건 불능처리 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS	= #SCDL_STS_E0#
+			, SCDL_RTCD = 'E888'
+			, SCDL_RTMSG = #SCDL_RTMSG#
+
+		WHERE SCDL_STS IN (#SCDL_STS_A0#, #SCDL_STS_AA#)
+			AND EXISTS(
+				SELECT 	1
+				FROM TBKW_NCRQ_$YYMM$
+				WHERE TBKW_SCDL_$YYMM$.NCRQ_SEQ = TBKW_NCRQ_$YYMM$.NCRQ_SEQ
+				  AND TBKW_NCRQ_$YYMM$.NCRQ_RQTM < #ST_TIME#
+			)
+	]]></update>
+	
+	<update id="INIT_STATUS" parameterClass="java.util.Map">
+	<![CDATA[
+		/*처리시간 초과건 불능처리 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS = #SCDL_STS#
+		WHERE SCDL_STS = #BF_SCDL_STS#
+	]]>
+	</update>
+
+	<select id="SELECT_REQUEST_NICE_LOGGER_LIST" parameterClass="java.util.Map" resultClass="oMap">
+	<!-- 스크래핑 요청 처리상태 L0 NICE로그등록 대상 -->
+	<![CDATA[
+		/* NICE 정보등록 요청 대상 데이터 조회(현재월+이전월 동시처리) - 1단계 : 조회 */
+		SELECT
+			  SCDL_SEQ
+			, SCDL_MBRNO
+			, NCRQ_BZCD
+			, NCRQ_ORG_ID
+			, SCDL_G_BZCD
+			, SCDL_BZCD
+			, SCDL_JBCD
+			, SCDL_ABRQ
+			, SCDL_ABRS
+			, SCDL_SCAF_ID
+			, SCDL_RTCD
+			, SCDL_NRTCD
+			, SCDL_FTPCD
+			, YYMM
+			, SCDL_CNT3
+			, SCDL_OSTR
+		FROM
+		(
+			SELECT
+				  RANK() OVER(ORDER BY A.SCDL_RDT ASC) AS NO
+				, SCDL_SEQ
+				, SCDL_MBRNO
+				, NCRQ_BZCD
+				, NCRQ_ORG_ID
+				, SCDL_G_BZCD
+				, SCDL_BZCD
+				, SCDL_JBCD
+				, SCDL_ABRQ
+				, SCDL_ABRS
+				, SCDL_SCAF_ID
+				, SCDL_RTCD
+				, SCDL_NRTCD
+				, SCDL_FTPCD
+				, YYMM
+				, SCDL_CNT3
+				, SCDL_OSTR
+			FROM (
+				/*현재 월*/
+				SELECT
+					  SCDL_SEQ
+					, SCDL_MBRNO
+					, NCRQ_BZCD
+					, NCRQ_ORG_ID
+					, SCDL_G_BZCD
+					, SCDL_BZCD
+					, SCDL_JBCD
+					, SCDL_ABRQ
+					, SCDL_ABRS
+					, SCDL_SCAF_ID
+					, SCDL_RTCD
+					, SCDL_NRTCD
+					, SCDL_FTPCD
+					, #YYMM# AS YYMM
+					, TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					, SCDL_CNT3
+					, SCDL_OSTR
+				FROM TBKW_SCDL_$YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT3 < TO_NUMBER(#RETRY_CNT#, '9')			
+
+				UNION ALL
+
+				/*이전 월*/
+				SELECT
+					  SCDL_SEQ
+					, SCDL_MBRNO
+					, NCRQ_BZCD
+					, NCRQ_ORG_ID
+					, SCDL_G_BZCD
+					, SCDL_BZCD
+					, SCDL_JBCD
+					, SCDL_ABRQ
+					, SCDL_ABRS
+					, SCDL_SCAF_ID
+					, SCDL_RTCD
+					, SCDL_NRTCD
+					, SCDL_FTPCD
+					, #BF_YYMM# AS YYMM
+					,TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					,SCDL_CNT3
+					,SCDL_OSTR
+				FROM TBKW_SCDL_$BF_YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT3 < TO_NUMBER(#RETRY_CNT#, '9')				  
+			)A
+		)A
+		WHERE NO <= TO_NUMBER(#POOL_SIZE#,'FM99999999999')
+	]]>
+	</select>
+	
+	<update id="UPDATE_REQUEST_NICE_LOGGER" parameterClass="java.util.Map">
+	<!-- 스크래핑 요청 처리상태  LL NICE로그등록 대상 지정 -->
+	<![CDATA[
+		/*NICE 정보등록 요청 대상 데이터 조회(현재월+이전월 2회 호출)- 2단계 : 조회 대상 지정 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		  SET
+			  SCDL_STS  = #SCDL_STS#
+			, SCDL_CNT3 = SCDL_CNT3 + 1
+			, SCDL_SVMK = #SCDL_SVMK#
+			, SCDL_WLTM = TO_CHAR(NOW(),'YYYYMMDDHH24MISS')
+		WHERE SCDL_SEQ  = #SCDL_SEQ#
+	]]>
+	</update>
+	
+	<update id="SAVE_RESPONSE_NICE_LOGGER" parameterClass="java.util.Map">
+	<![CDATA[
+		/* NICE 정보등록 응답결과를 DB에 저장 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS      = #SCDL_STS#
+			, SCDL_NRLCD    = #SCDL_NRLCD#
+			, SCDL_LTRQ     = #SCDL_LTRQ#
+			, SCDL_LTRS     = #SCDL_LTRS#
+			, SCDL_LQTM     = #SCDL_LQTM#
+			, SCDL_LSTM     = #SCDL_LSTM#
+			, SCDL_ER_CK_BT	= #SCDL_ER_CK_BT#
+			, SCDL_ER_RTCD	= #SCDL_ER_RTCD#
+		WHERE SCDL_SEQ = #SCDL_SEQ#
+	]]>
+	</update>
+	
+	
+	
+	<update id="SAVE_FTP_RESULT" parameterClass="java.util.Map">
+	<![CDATA[
+		/* SAVE_FTP_RESULT :FTP 업로드 결과 저장  */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS      = #SCDL_STS#
+			, SCDL_FTPCD    = #SCDL_FTPCD#
+			, SCDL_FTPMSG   = #SCDL_FTPMSG#
+		WHERE SCDL_SEQ = #SCDL_SEQ#
+	]]>
+	</update>
+	
+	
+	<select id="SELECT_REQUEST_AIB_FTP_LIST" parameterClass="java.util.Map" resultClass="oMap">
+	<!-- 스크래핑 요청 처리상태  F0 AIB요청 대상 
+		 스크래핑 요청횟수 3회 미만
+	 -->
+	<![CDATA[
+		/* AIB 스크래핑 요청 대상 데이터 조회(현재월+이전월 동시처리) - 조회 */
+		SELECT
+			  SCDL_SEQ
+			, SCDL_MBRNO
+			, NCRQ_BZCD
+			, NCRQ_ORG_ID
+			, SCDL_G_BZCD
+			, SCDL_BZCD
+			, SCDL_JBCD
+			, SCDL_ABRQ
+			, SCDL_ABRS
+			, SCDL_XMLDATA
+			, SCDL_SCAF_ID
+			, SCDL_RTCD
+			, YYMM
+			, SCDL_CNT4
+			, SCDL_OSTR
+		FROM
+		(
+			SELECT
+				  RANK() OVER(ORDER BY A.SCDL_RDT ASC) AS NO
+				, SCDL_SEQ
+				, SCDL_MBRNO
+				, NCRQ_BZCD
+				, NCRQ_ORG_ID
+				, SCDL_G_BZCD
+				, SCDL_BZCD
+				, SCDL_JBCD
+				, SCDL_ABRQ
+				, SCDL_ABRS
+				, SCDL_XMLDATA
+				, SCDL_SCAF_ID
+				, SCDL_RTCD
+				, YYMM
+				, SCDL_CNT4
+				, SCDL_OSTR
+			FROM (
+				/*현재 월*/
+				SELECT
+					  SCDL_SEQ
+					, SCDL_MBRNO
+					, NCRQ_BZCD
+					, NCRQ_ORG_ID
+					, SCDL_G_BZCD
+					, SCDL_BZCD
+					, SCDL_JBCD
+				    , SCDL_ABRQ
+					, SCDL_ABRS
+					, SCDL_XMLDATA
+					, SCDL_SCAF_ID
+					, SCDL_RTCD
+					, #YYMM# AS YYMM
+					, TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					, SCDL_CNT4
+					, SCDL_OSTR
+				FROM TBKW_SCDL_$YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT4 < TO_NUMBER(#RETRY_CNT#, '9')
+
+				UNION ALL
+
+				/*이전 월*/
+				SELECT
+					SCDL_SEQ
+					,SCDL_MBRNO
+					,NCRQ_BZCD
+					,NCRQ_ORG_ID
+					,SCDL_G_BZCD
+					,SCDL_BZCD
+					,SCDL_JBCD
+			        ,SCDL_ABRQ
+					,SCDL_ABRS
+					,SCDL_XMLDATA
+					,SCDL_SCAF_ID
+					,SCDL_RTCD
+					,#BF_YYMM# AS YYMM
+					,TO_CHAR(SCDL_RDT,'YYYYMMDDHH24MISS') SCDL_RDT
+					,SCDL_CNT4
+					,SCDL_OSTR
+				FROM TBKW_SCDL_$BF_YYMM$ A
+
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+				WHERE SCDL_STS = #SCDL_STS#
+				  AND SCDL_CNT4 < TO_NUMBER(#RETRY_CNT#, '9')
+			)A
+		)A
+		WHERE NO <= TO_NUMBER(#POOL_SIZE#,'FM99999999999')
+	]]></select>
+	
+	<update id="UPDATE_REQUEST_AIB_FTP" parameterClass="java.util.Map">
+	<!-- 스크래핑 요청 처리상태  AA AIB요청 대상 지정  -->
+	<![CDATA[
+		/* AIB 스크래핑 요청 대상 데이터 조회(현재월+이전월 2회 호출)- 조회 대상 지정 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS		= #SCDL_STS#
+			, SCDL_CNT4		= SCDL_CNT4 + 1
+			, SCDL_SVMK		= #SCDL_SVMK#
+			, SCDL_AFQTM	= TO_CHAR(NOW(),'YYYYMMDDHH24MISS')
+		WHERE SCDL_SEQ  	= #SCDL_SEQ#
+	]]></update>
+
+	<update id="SAVE_RESPONSE_AIB_FTP" parameterClass="java.util.Map">
+	<![CDATA[
+		/* AIB 스크래핑 응답결과를 DB에 저장 */
+		UPDATE TBKW_SCDL_$YYMM$ 
+		   SET
+			  SCDL_STS   	= #SCDL_STS#
+			, SCDL_RTCD2  	= #SCDL_RTCD2#
+			, SCDL_RTMSG2 	= #SCDL_RTMSG2#
+			, SCDL_AFRQ  	= #SCDL_AFRQ#
+			, SCDL_AFRS  	= #SCDL_AFRS#
+			, SCDL_AFIP  	= #SCDL_AFIP#
+			, SCDL_AFQTM  	= #SCDL_AFQTM#
+			, SCDL_AFSTM  	= #SCDL_AFSTM#
+			, SCDL_FTPCD	= #SCDL_FTPCD#
+			, SCDL_FTPMSG	= #SCDL_FTPMSG#
+		WHERE SCDL_SEQ   	= #SCDL_SEQ#
+	]]>
+	</update>
+
+</sqlMap>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="ADM_LGN_01000A" parameterClass="java.util.Map" resultClass="oMap">
+		/*사용자 정보 조회*/
+		SELECT
+			A.MGRINF_ID
+			,A.MGRINF_GRD
+			,A.MGRINF_NM
+			,A.MGRINF_TEL
+			,CD1.CDDTL_NM AS MGRINF_GRD_NM
+		FROM TBKW_MGRINF A
+		
+		LEFT OUTER JOIN TBKW_CDDTL CD1
+			ON A.MGRINF_GRD = CD1.CDDTL_DTLCD
+			AND CD1.CDCLS_CLSCD = '0001'
+		
+		WHERE A.MGRINF_ID = #MGRINF_ID#
+			AND A.MGRINF_PWD = #MGRINF_PWD#
+			AND A.MGRINF_USYN='Y'
+	</select>
+	
+	<insert id="ADM_LGN_01000A_I1" parameterClass="java.util.Map">
+		/*로그인 이력 저장*/
+		INSERT INTO TBKW_LGNHST(
+			MGRINF_ID, LGNHST_RMTIP
+		)VALUES(
+			#MGRINF_ID#, #LGNHST_RMTIP#
+		)
+	</insert>
+	
+	<select id="ADM_LGN_02010A" resultClass="oMap">
+		/*모듈 목록*/
+		SELECT
+		DISTINCT
+		C.CLPDJM_FCD||'-'||C.CLPDJM_BCD AS SCH_FCD
+		,C.CLPDJM_NM
+		,C.CLPDJM_FCD
+		,C.CLPDJM_BCD
+		FROM TBKW_CLTINF A
+		
+		INNER JOIN TBKW_CLPDCT B
+			ON A.CLTINF_SEQ = B.CLTINF_SEQ
+		
+		INNER JOIN TBKW_CLPDJM C
+			ON B.CLPDCT_SEQ = C.CLPDCT_SEQ
+	</select>
+</sqlMap>

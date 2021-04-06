@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 건강보험증명서 발급사실 확인서비스 요청 -->
+	<field name="SCAF_ID"		length="12"	    type="AN"	default=""/>	<!-- SCAF ID -->
+	<field name="ISSUE_TYPE"	length="1"	    type="AN"	default=""/>	<!-- 발급사실 확인 문서종류 (1: 납부확인서 및 완납증명서, 2:자격득실확인서) -->
+	<field name="DC_NO"			length="20"	    type="AN"	default=""/>	<!-- 증명서 발급번호 -->
+	<field name="BRTH"			length="8"	    type="AN"	default=""/>	<!-- 생년월일 -->
+	<field name="NM"			length="20"	    type="AN"	default=""/>	<!-- 성명 -->
+	<field name="FLR"			length="137"	type="AN"	default=""/>	<!-- 공란 -->
+</struct>

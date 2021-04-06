@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 1S101 : 서버 스크래핑 요청
+		 17 : 자동차등록원부 요청
+		 20 : 주민등록증 진위 요청
+		 21 : 운전면허 진위요청
+		 22 : 주민등록 등초본 진위확인
+		 24 : 인감증명서 발급사실 확인
+		 
+	AIB 상풐코드 : 전문코드(4자리) + 업무코드(1~2자리)
+		0004-2  : 도로교통공단 운전면허증 진위여부
+		0005-5  : 민원24 주민등록증 진위여부
+		0008-4  : 민원24 인감증명서 발급사실 확인
+		0009-50 : 자동차등록원부(갑,을,소유자검증) 발급
+		0019-6  : 민원24 주민등록 등초본 발급이력조회 		 
+	 -->
+	<mapper request="1S101-17"	response="3A039"	aib="0009-50"/>
+	<mapper request="1S101-20"	response="3A027"	aib="0005-5"/>
+	<mapper request="1S101-21"	response="3A027"	aib="0004-2"/>
+    <mapper request="1S101-22"  response="3A028"    aib="0019-6"  aib2="0025-9" branchCondition="1=aib,2=aib2" branchParamName="ISSUE_TYPE"/>
+    <mapper request="1S101-24"  response="3A030"    aib="0008-4"/>
+    <mapper request="1S101-18"  response="3A040"    aib="0040-51"/>	<!-- 건설기계등록원부 조회  -->
+    <mapper request="1S101-30"  response="3A048"    aib="0011-5"/>	<!-- 수출차 조회 -->
+    <mapper request="1S101-33"  response="3A050"    aib="0039-1"/>	<!-- 외국인 등록증 -->
+    <mapper request="1S101-34"  response="3A049"    aib="0066-6"/>	<!-- 본인서명발급사실 확인 -->
+    <mapper request="1S101-38"  response="3A056"    aib="0078-10"/>	<!-- 홈택스 민원증명 발급번호 진위 조회 -->
+    <mapper request="1S101-39"  response="3A055"    aib="0061-50"/>	<!-- 건강보험증명서 발급사실 확인서비스 -->
+    <mapper request="1S101-31"  response="3A058"    aib="0027-1"/>	<!-- 자량전손 및 사고이력 조회 -->
+
+	<mapper request="1S111-17"	response="3A039"	aib="0009-50"/>
+	<mapper request="1S111-20"	response="3A027"	aib="0005-5"/>
+	<mapper request="1S111-21"	response="3A027"	aib="0004-2"/>
+    <mapper request="1S111-22"  response="3A028"    aib="0019-6"  aib2="0025-9" branchCondition="1=aib,2=aib2" branchParamName="ISSUE_TYPE"/>
+    <mapper request="1S111-24"  response="3A030"    aib="0008-4"/>
+    <mapper request="1S111-18"  response="3A040"    aib="0040-51"/>	<!-- 건설기계등록원부 발급 -->
+    
+    <mapper request="1S111-11"	aib="0078-71"/>
+    <mapper request="1S111-12"	aib="0078-71"/>
+    <mapper request="1S111-13"	aib="0078-71"/>
+    <mapper request="1S111-15"	aib="0078-71"/>
+    <mapper request="1S111-26"	aib="0078-71"/>
+    <mapper request="1S111-32"	aib="0016-9"/>
+    <mapper request="1S111-25"	aib="0018-13"/>
+    <mapper request="1S111-27"	aib="0018-13"/>
+    
+    <mapper request="1S121-17"	response="3A039"	aib="0009-50"/>
+	<mapper request="1S121-20"	response="3A027"	aib="0005-5"/>
+	<mapper request="1S121-21"	response="3A027"	aib="0004-2"/>
+    <mapper request="1S121-22"  response="3A028"    aib="0019-6"  aib2="0025-9" branchCondition="1=aib,2=aib2" branchParamName="ISSUE_TYPE"/>
+    <mapper request="1S121-24"  response="3A030"    aib="0008-4"/>
+    
+    <mapper request="1S121-11"	aib="0078-71"/>
+    <mapper request="1S121-12"	aib="0078-71"/>
+    <mapper request="1S121-13"	aib="0078-71"/>
+    <mapper request="1S121-15"	aib="0078-71"/>
+    <mapper request="1S121-26"	aib="0078-71"/>
+    <mapper request="1S121-32"	aib="0016-9"/>
+    <mapper request="1S121-25"	aib="0018-13"/>
+    <mapper request="1S121-27"	aib="0018-13"/>
+    
+    <mapper request="1S131-31"  response="3A051"    aib="0027-1"/>	<!-- 자량전손 및 사고이력 조회 -->
+</struct>

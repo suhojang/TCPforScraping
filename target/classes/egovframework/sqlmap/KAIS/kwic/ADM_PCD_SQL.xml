@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="ADM_PCD_S1100A" resultClass="oMap">
+		/*분류코드목록조회*/
+		SELECT
+			CDCLS_CLSCD
+			,CDCLS_NM
+			,CDCLS_LEN
+			,CDCLS_MKN
+			,CDCLS_RUSR
+			,TO_CHAR(CDCLS_RDT,'YYYY.MM.DD HH24:MI:SS MS') AS CDCLS_RDT
+		FROM TBKW_CDCLS
+		ORDER BY CDCLS_CLSCD ASC
+	</select>
+	<select id="ADM_PCD_S1100A_1" parameterClass="string" resultClass="oMap">
+		/*분류코드조회*/
+		SELECT
+			CDCLS_CLSCD
+			,CDCLS_NM
+			,CDCLS_LEN
+			,CDCLS_MKN
+			,CDCLS_RUSR
+			,TO_CHAR(CDCLS_RDT,'YYYY.MM.DD HH24:MI:SS MS') AS CDCLS_RDT
+		FROM TBKW_CDCLS
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+	</select>
+	<insert id="ADM_PCD_I1110A" parameterClass="java.util.Map">
+		/*분류코드 추가*/
+		INSERT INTO TBKW_CDCLS(
+			CDCLS_CLSCD
+			,CDCLS_NM
+			,CDCLS_LEN
+			,CDCLS_RUSR
+		)VALUES(
+			#CDCLS_CLSCD#
+			,#CDCLS_NM#
+			,TO_NUMBER(#CDCLS_LEN#,'FM999')
+			,#CDCLS_RUSR#
+		)
+	</insert>
+	<update id="ADM_PCD_U1120A" parameterClass="java.util.Map">
+		/*분류코드 수정*/
+		UPDATE TBKW_CDCLS SET
+			CDCLS_NM = #CDCLS_NM#
+			,CDCLS_LEN = TO_NUMBER(#CDCLS_LEN#,'FM999')
+			,CDCLS_RUSR = #CDCLS_RUSR#
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+	</update>
+	<delete id="ADM_PCD_D1130A" parameterClass="string">
+		/*분류코드 삭제*/
+		DELETE FROM TBKW_CDCLS
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+	</delete>
+	<delete id="ADM_PCD_D1130A_1" parameterClass="string">
+		/*분류코드 하위 상세코드 모두 삭제*/
+		DELETE FROM TBKW_CDDTL
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+	</delete>
+	
+	<select id="ADM_PCD_S1200A" parameterClass="string" resultClass="oMap">
+		/*상세코드목록조회*/
+		SELECT
+			CDDTL_DTLCD
+			,CDDTL_NM
+			,CDDTL_ORD
+			,CDDTL_USEYN
+			,CDCLS_CLSCD
+			,CDDTL_RUSR
+			,TO_CHAR(CDDTL_RDT,'YYYY.MM.DD HH24:MI:SS MS') AS CDDTL_RDT
+		FROM TBKW_CDDTL
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+			/*AND CDDTL_USEYN = 'Y'*/
+		ORDER BY CDDTL_ORD ASC
+	</select>
+	<select id="ADM_PCD_S1200A_USE" parameterClass="string" resultClass="oMap">
+		/*상세코드목록조회*/
+		SELECT
+			CDCLS_CLSCD
+			,CDDTL_DTLCD
+			,CDDTL_NM
+			,CDDTL_ORD
+			,CDDTL_USEYN
+			,CDDTL_RUSR
+			,TO_CHAR(CDDTL_RDT,'YYYY.MM.DD HH24:MI:SS MS') AS CDDTL_RDT
+		FROM TBKW_CDDTL
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+			AND CDDTL_USEYN = 'Y'
+		ORDER BY CDDTL_ORD ASC
+	</select>
+	<select id="ADM_PCD_S1200A_1" parameterClass="java.util.Map" resultClass="oMap">
+		/*상세코드조회*/
+		SELECT
+			CDCLS_CLSCD
+			,CDDTL_DTLCD
+			,CDDTL_NM
+			,CDDTL_ORD
+			,CDDTL_USEYN
+			,CDDTL_RUSR
+			,TO_CHAR(CDDTL_RDT,'YYYY.MM.DD HH24:MI:SS MS') AS CDDTL_RDT
+		FROM TBKW_CDDTL
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+			AND CDDTL_DTLCD = #CDDTL_DTLCD#
+			/*AND CDDTL_USEYN = 'Y'*/
+	</select>
+	<select id="ADM_PCD_S1200A_2" parameterClass="java.util.Map" resultClass="oMap">
+		/*상세 코드명으로 조회*/
+		SELECT
+			CDCLS_CLSCD
+			,CDDTL_DTLCD
+			,CDDTL_NM
+			,CDDTL_ORD
+			,CDDTL_USEYN
+			,CDDTL_RUSR
+			,TO_CHAR(CDDTL_RDT,'YYYY.MM.DD HH24:MI:SS MS') AS CDDTL_RDT
+		FROM TBKW_CDDTL
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+			AND CDDTL_NM = #CDDTL_NM#
+	</select>
+	
+	
+	<insert id="ADM_PCD_I1210A" parameterClass="java.util.Map">
+		/*상세코드 추가*/
+		INSERT INTO TBKW_CDDTL(
+			CDCLS_CLSCD
+			,CDDTL_DTLCD
+			,CDDTL_NM
+			,CDDTL_ORD
+			,CDDTL_USEYN
+			,CDDTL_RUSR
+		)VALUES(
+			#CDCLS_CLSCD#
+			,#CDDTL_DTLCD#
+			,#CDDTL_NM#
+			,TO_NUMBER(#CDDTL_ORD#,'FM9999')
+			,#CDDTL_USEYN#
+			,#CDDTL_RUSR#
+		)
+	</insert>
+	<update id="ADM_PCD_U1220A" parameterClass="java.util.Map">
+		/*상세코드 수정*/
+		UPDATE TBKW_CDDTL SET
+			CDDTL_NM = #CDDTL_NM#
+			,CDDTL_ORD = TO_NUMBER(#CDDTL_ORD#,'FM9999')
+			,CDDTL_USEYN = #CDDTL_USEYN#
+			,CDDTL_RUSR = #CDDTL_RUSR#
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+			AND CDDTL_DTLCD = #CDDTL_DTLCD#
+	</update>
+	<delete id="ADM_PCD_D1230A" parameterClass="java.util.Map">
+		/*상세코드 삭제*/
+		DELETE FROM TBKW_CDDTL
+		WHERE CDCLS_CLSCD = #CDCLS_CLSCD#
+			AND CDDTL_DTLCD = #CDDTL_DTLCD#
+	</delete>
+	
+</sqlMap>

@@ -1,0 +1,25 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+	
+}
+
+td.lefthead{
+	color:#303641;
+	font-size:13px;
+	font-weight:bold;
+	background-color: #ffffff;
+}
+.itable > thead > tr > td,
+.itable > tbody > tr > td,
+.itable > tfoot > tr > td,
+.itable > thead > tr > th,
+.itable > tbody > tr > th,
+.itable > tfoot > tr > th {
+  background-color: transparent;
+  height:30px;
+}

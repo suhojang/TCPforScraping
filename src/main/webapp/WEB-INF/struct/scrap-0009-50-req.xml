@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 자동차등록원부(갑,을,소유자검증) 발급 -->
+	<element name="OWNERNAME"		mappingElement="OWNM"		    default=""/>      <!--소유자명  -->
+	<element name="REGISELECT"		mappingElement="OWNO_KN"	    default=""/>      <!--소유자고유번호 구분 (0:주민번호, 1:외국인등록번호, 2:법인번호, 3:사업자번호)  -->
+	<element name="OWNERJUMIN"		mappingElement="OWNO"		    default=""/>      <!--소유자 고유 식별번호  -->
+	<element name="CARNUMSELECT"	mappingElement="CRNO_KN"	    default=""/>      <!--차량구분 (1:차량번호, 2:차대번호)  -->
+	<element name="REGINUMBER"		mappingElement="VHCL_NO"	    default=""/>      <!--차량번호  -->
+	<element name="DISTINCTNUMBER"	mappingElement="VSRL_NO"	    default=""/>      <!--차대번호  -->
+	<element name="PRINT"			mappingElement="PRT_KN"		    default=""/>      <!--출력방식 (Y:출력,데이터파싱출력  N:미출력  D:미출력,데이터파싱출력  V:소유자검증 )  -->
+	<element name="PHONE1"			mappingElement="PHN1"		    default=""/>      <!--전화번호1  -->
+	<element name="PHONE2"			mappingElement="PHN2"		    default=""/>      <!--전화번호2  -->
+	<element name="PHONE3"			mappingElement="PHN3"		    default=""/>      <!--전화번호3  -->
+	<element name="CPHONE1"			mappingElement="MBL1"		    default=""/>      <!--휴대전화1  -->
+	<element name="CPHONE2"			mappingElement="MBL2"		    default=""/>      <!--휴대전화2  -->
+	<element name="CPHONE3"			mappingElement="MBL3"		    default=""/>      <!--휴대전화3  -->
+	<element name="EMAIL"			mappingElement="EML"		    default=""/>      <!--이메일  -->
+	<element name="TASK"			mappingElement="BZ_OPT"		    default=""/>      <!--업무선택 (0:갑, 1:을, 2:갑+을)  -->
+	<element name="JUMINOPEN"		mappingElement="OWNO_OPN_KN"	default=""/>      <!--소유자 고유번호 공개구분 (0:비공개, 1:공개)  -->
+	<element name="CARREGIOPEN"		mappingElement="V_INF_MR_KN"	default=""/>      <!--자동차 등록내역 표시구분 (0:전체내역, 1:최종내역)  -->
+	<element name="ISSUENUM"		mappingElement="PRT_CNT"	    default=""/>      <!--발급부수 (0001로 고정)  -->
+	<element name="JOBGUBUN"		mappingElement="AP_KN"		    default=""/>      <!--신청구분 (2:열람, 2로 고정)  -->
+	<element name="DOCUOUTPUTKIND"	mappingElement="DC_PRT_KN"	    default=""/>      <!--문서출력구분  -->
+	<element name="DOCUFILENAME"	mappingElement="DC_FL_NM"	    default=""/>      <!--문서파일명  -->
+	<element name="FILEINFOGUBUN"	mappingElement="FL_INF_MRK_YN"	default=""/>      <!--저장파일정보 표시여부  -->
+	<element name="TRANSTYPE"	    default="1"/>      <!--FTP TYPE  -->
+</struct>

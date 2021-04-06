@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="ADM_PRS_S1000A" resultClass="oMap" parameterClass="java.util.Map">
+		/*처리현황 목록조회*/
+		SELECT
+			NO
+			,NCRQ_BZCD
+			,SCDL_SEQ
+			,SCDL_SCAF_ID
+			,SCDL_ABIP
+			,NCRQ_RQTM
+			,SCDL_MBRNO
+			,SCDL_BZCD
+			,SCDL_STS
+			,SCDL_RTCD
+			,SCDL_RTMSG
+			,SCDL_NQTM
+			,SCDL_NRTCD
+			,SCDL_SVMK
+			,SCDL_CNT
+			,SCDL_CNT2
+			,SCDL_WATM
+			,SCDL_WNTM
+			,SCDL_AQTM
+			,SCDL_ASTM
+			,SCDL_NSTM
+			,SCDL_ER_CK_BT
+			,SCDL_ER_RTCD
+			,SCDL_RDT
+			,NCRQ_TL_NO
+			,NCRQ_SEQ
+			,#YYMM# AS YYMM
+		FROM
+		(
+			SELECT
+				RANK() OVER(ORDER BY A.SCDL_RDT DESC) AS NO
+				,B.NCRQ_BZCD
+				,B.NCRQ_RQTM
+				,A.SCDL_MBRNO
+				,A.SCDL_G_BZCD||'('||A.SCDL_BZCD||'-'||A.SCDL_JBCD||')' AS SCDL_BZCD
+				,A.SCDL_SCAF_ID
+				,COALESCE(CD0002.CDDTL_NM,A.SCDL_STS) AS SCDL_STS
+				,COALESCE(CD0003.CDDTL_NM,A.SCDL_RTCD) AS SCDL_RTCD
+				,A.SCDL_RTMSG
+				,A.SCDL_NQTM
+				,A.SCDL_SVMK
+				,A.SCDL_CNT
+				,A.SCDL_CNT2
+				,A.SCDL_NRTCD
+				,A.SCDL_WATM
+				,A.SCDL_WNTM
+				,A.SCDL_ABIP
+				,A.SCDL_AQTM
+				,A.SCDL_ASTM
+				,A.SCDL_NSTM
+				,A.SCDL_ER_CK_BT
+				,A.SCDL_ER_RTCD
+				,TO_CHAR(A.SCDL_RDT,'YYYYMMDD') AS SCDL_RDT
+				,B.NCRQ_TL_NO
+				,A.NCRQ_SEQ
+				,A.SCDL_SEQ
+			FROM TBKW_SCDL_$YYMM$ A
+
+			INNER JOIN TBKW_NCRQ_$YYMM$ B
+				ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+			LEFT OUTER JOIN TBKW_CDDTL CD0002
+				ON A.SCDL_STS = CD0002.CDDTL_DTLCD
+				AND CD0002.CDCLS_CLSCD = '0002'
+
+			LEFT OUTER JOIN TBKW_CDDTL CD0003
+				ON A.SCDL_RTCD = CD0003.CDDTL_DTLCD
+				AND CD0003.CDCLS_CLSCD = '0003'
+
+			WHERE 1=1
+			<isNotEqual prepend="" property="SCDL_G_BZCD" compareValue="">
+			AND A.SCDL_G_BZCD = #SCDL_G_BZCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_BZCD" compareValue="">
+			AND A.SCDL_BZCD = #SCDL_BZCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_JBCD" compareValue="">
+			AND A.SCDL_JBCD = #SCDL_JBCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_SCAF_ID" compareValue="">
+			AND A.SCDL_SCAF_ID = #SCDL_SCAF_ID#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_STS" compareValue="">
+			AND A.SCDL_STS = #SCDL_STS#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_RTCD" compareValue="">
+			AND A.SCDL_RTCD = #SCDL_RTCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_RDT_FR" compareValue=""><![CDATA[
+			AND B.NCRQ_RQTM >= #SCDL_RDT_FR#||'000000'
+			]]></isNotEqual>
+			<isNotEqual prepend="" property="SCDL_RDT_TO" compareValue=""><![CDATA[
+			AND B.NCRQ_RQTM <= #SCDL_RDT_TO#||'999999'
+			]]></isNotEqual>
+		)A
+		WHERE NO BETWEEN TO_NUMBER(#STNO#,'999999999') AND TO_NUMBER(#EDNO#,'999999999')
+	</select>
+
+	<select id="ADM_PRS_S1000A_1" resultClass="oMap" parameterClass="java.util.Map">
+		/*처리현황 목록 건수 조회*/
+			SELECT
+				COUNT(A.SCDL_SEQ) AS TCNT
+			FROM TBKW_SCDL_$YYMM$ A
+
+			INNER JOIN TBKW_NCRQ_$YYMM$ B
+				ON A.NCRQ_SEQ = B.NCRQ_SEQ
+
+			WHERE 1=1
+			<isNotEqual prepend="" property="SCDL_G_BZCD" compareValue="">
+			AND A.SCDL_G_BZCD = #SCDL_G_BZCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_BZCD" compareValue="">
+			AND A.SCDL_BZCD = #SCDL_BZCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_JBCD" compareValue="">
+			AND A.SCDL_JBCD = #SCDL_JBCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_SCAF_ID" compareValue="">
+			AND A.SCDL_SCAF_ID = #SCDL_SCAF_ID#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_STS" compareValue="">
+			AND A.SCDL_STS = #SCDL_STS#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_RTCD" compareValue="">
+			AND A.SCDL_RTCD = #SCDL_RTCD#
+			</isNotEqual>
+			<isNotEqual prepend="" property="SCDL_RDT_FR" compareValue=""><![CDATA[
+			AND B.NCRQ_RQTM >= #SCDL_RDT_FR#||'000000'
+			]]></isNotEqual>
+			<isNotEqual prepend="" property="SCDL_RDT_TO" compareValue=""><![CDATA[
+			AND B.NCRQ_RQTM <= #SCDL_RDT_TO#||'999999'
+			]]></isNotEqual>
+	</select>
+	
+	<select id="ADM_PRS_S1001A" resultClass="oMap" parameterClass="java.util.Map">
+		/*처리현황 목록조회*/
+		SELECT
+			 NO
+			,NCRQ_BZCD
+			,SCDL_SEQ
+			,SCDL_SCAF_ID
+			,SCDL_ABIP
+			,NCRQ_RQTM
+			,SCDL_MBRNO
+			,SCDL_BZCD
+			,SCDL_STS
+			,SCDL_RTCD
+			,SCDL_RTMSG
+			,SCDL_NQTM
+			,SCDL_NRTCD
+			,SCDL_SVMK
+			,SCDL_CNT
+			,SCDL_CNT2
+			,SCDL_WATM
+			,SCDL_WNTM
+			,SCDL_AQTM
+			,SCDL_ASTM
+			,SCDL_NSTM
+			,SCDL_ER_CK_BT
+			,SCDL_ER_RTCD
+			,SCDL_RDT
+			,NCRQ_TL_NO
+			,NCRQ_SEQ
+			,YYMM
+		FROM
+		(
+			SELECT
+				RANK() OVER(ORDER BY SCDL_RDT DESC) AS NO
+				,NCRQ_BZCD
+				,SCDL_SEQ
+				,SCDL_SCAF_ID
+				,SCDL_ABIP
+				,NCRQ_RQTM
+				,SCDL_MBRNO
+				,SCDL_BZCD
+				,SCDL_STS
+				,SCDL_RTCD
+				,SCDL_RTMSG
+				,SCDL_NQTM
+				,SCDL_NRTCD
+				,SCDL_SVMK
+				,SCDL_CNT
+				,SCDL_CNT2
+				,SCDL_WATM
+				,SCDL_WNTM
+				,SCDL_AQTM
+				,SCDL_ASTM
+				,SCDL_NSTM
+				,SCDL_ER_CK_BT
+				,SCDL_ER_RTCD
+				,SCDL_RDT2 AS SCDL_RDT
+				,NCRQ_TL_NO
+				,NCRQ_SEQ
+				,YYMM
+			FROM
+			(	
+				SELECT
+					NCRQ_BZCD
+					,SCDL_SEQ
+					,SCDL_SCAF_ID
+					,SCDL_ABIP
+					,NCRQ_RQTM
+					,SCDL_MBRNO
+					,SCDL_BZCD
+					,SCDL_STS
+					,SCDL_RTCD
+					,SCDL_RTMSG
+					,SCDL_NQTM
+					,SCDL_NRTCD
+					,SCDL_SVMK
+					,SCDL_CNT
+					,SCDL_CNT2
+					,SCDL_WATM
+					,SCDL_WNTM
+					,SCDL_AQTM
+					,SCDL_ASTM
+					,SCDL_NSTM
+					,SCDL_ER_CK_BT
+					,SCDL_ER_RTCD
+					,SCDL_RDT
+					,SCDL_RDT2
+					,NCRQ_TL_NO
+					,NCRQ_SEQ
+					,#BF_YYMM# AS YYMM
+				FROM
+				(
+					SELECT
+						B.NCRQ_BZCD
+						,B.NCRQ_RQTM
+						,A.SCDL_MBRNO
+						,A.SCDL_G_BZCD||'('||A.SCDL_BZCD||'-'||A.SCDL_JBCD||')' AS SCDL_BZCD
+						,A.SCDL_SCAF_ID
+						,COALESCE(CD0002.CDDTL_NM,A.SCDL_STS) AS SCDL_STS
+						,COALESCE(CD0003.CDDTL_NM,A.SCDL_RTCD) AS SCDL_RTCD
+						,A.SCDL_RTMSG
+						,A.SCDL_NQTM
+						,A.SCDL_SVMK
+						,A.SCDL_CNT
+						,A.SCDL_CNT2
+						,A.SCDL_NRTCD
+						,A.SCDL_WATM
+						,A.SCDL_WNTM
+						,A.SCDL_ABIP
+						,A.SCDL_AQTM
+						,A.SCDL_ASTM
+						,A.SCDL_NSTM
+						,A.SCDL_ER_CK_BT
+						,A.SCDL_ER_RTCD
+						,TO_CHAR(A.SCDL_RDT,'YYYYMMDD') AS SCDL_RDT2
+						,A.SCDL_RDT
+						,B.NCRQ_TL_NO
+						,A.NCRQ_SEQ
+						,A.SCDL_SEQ
+					FROM TBKW_SCDL_$BF_YYMM$ A
+		
+					INNER JOIN TBKW_NCRQ_$BF_YYMM$ B
+						ON A.NCRQ_SEQ = B.NCRQ_SEQ
+		
+					LEFT OUTER JOIN TBKW_CDDTL CD0002
+						ON A.SCDL_STS = CD0002.CDDTL_DTLCD
+						AND CD0002.CDCLS_CLSCD = '0002'
+		
+					LEFT OUTER JOIN TBKW_CDDTL CD0003
+						ON A.SCDL_RTCD = CD0003.CDDTL_DTLCD
+						AND CD0003.CDCLS_CLSCD = '0003'
+		
+					WHERE 1=1
+					<isNotEqual prepend="" property="SCDL_G_BZCD" compareValue="">
+					AND A.SCDL_G_BZCD = #SCDL_G_BZCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_BZCD" compareValue="">
+					AND A.SCDL_BZCD = #SCDL_BZCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_JBCD" compareValue="">
+					AND A.SCDL_JBCD = #SCDL_JBCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_SCAF_ID" compareValue="">
+					AND A.SCDL_SCAF_ID = #SCDL_SCAF_ID#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_STS" compareValue="">
+					AND A.SCDL_STS = #SCDL_STS#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_RTCD" compareValue="">
+					AND A.SCDL_RTCD = #SCDL_RTCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_RDT_FR" compareValue=""><![CDATA[
+					AND B.NCRQ_RQTM >= #SCDL_RDT_FR#||'000000'
+					]]></isNotEqual>
+					<isNotEqual prepend="" property="SCDL_RDT_TO" compareValue=""><![CDATA[
+					AND B.NCRQ_RQTM <= #SCDL_RDT_TO#||'999999'
+					]]></isNotEqual>
+				) A
+				
+				UNION ALL
+				
+				SELECT
+					NCRQ_BZCD
+					,SCDL_SEQ
+					,SCDL_SCAF_ID
+					,SCDL_ABIP
+					,NCRQ_RQTM
+					,SCDL_MBRNO
+					,SCDL_BZCD
+					,SCDL_STS
+					,SCDL_RTCD
+					,SCDL_RTMSG
+					,SCDL_NQTM
+					,SCDL_NRTCD
+					,SCDL_SVMK
+					,SCDL_CNT
+					,SCDL_CNT2
+					,SCDL_WATM
+					,SCDL_WNTM
+					,SCDL_AQTM
+					,SCDL_ASTM
+					,SCDL_NSTM
+					,SCDL_ER_CK_BT
+					,SCDL_ER_RTCD
+					,SCDL_RDT
+					,SCDL_RDT2
+					,NCRQ_TL_NO
+					,NCRQ_SEQ
+					,#YYMM# AS YYMM
+				FROM
+				(
+					SELECT
+						B.NCRQ_BZCD
+						,B.NCRQ_RQTM
+						,A.SCDL_MBRNO
+						,A.SCDL_G_BZCD||'('||A.SCDL_BZCD||'-'||A.SCDL_JBCD||')' AS SCDL_BZCD
+						,A.SCDL_SCAF_ID
+						,COALESCE(CD0002.CDDTL_NM,A.SCDL_STS) AS SCDL_STS
+						,COALESCE(CD0003.CDDTL_NM,A.SCDL_RTCD) AS SCDL_RTCD
+						,A.SCDL_RTMSG
+						,A.SCDL_NQTM
+						,A.SCDL_SVMK
+						,A.SCDL_CNT
+						,A.SCDL_CNT2
+						,A.SCDL_NRTCD
+						,A.SCDL_WATM
+						,A.SCDL_WNTM
+						,A.SCDL_ABIP
+						,A.SCDL_AQTM
+						,A.SCDL_ASTM
+						,A.SCDL_NSTM
+						,A.SCDL_ER_CK_BT
+						,A.SCDL_ER_RTCD
+						,TO_CHAR(A.SCDL_RDT,'YYYYMMDD') AS SCDL_RDT2
+						,A.SCDL_RDT
+						,B.NCRQ_TL_NO
+						,A.NCRQ_SEQ
+						,A.SCDL_SEQ
+					FROM TBKW_SCDL_$YYMM$ A
+		
+					INNER JOIN TBKW_NCRQ_$YYMM$ B
+						ON A.NCRQ_SEQ = B.NCRQ_SEQ
+		
+					LEFT OUTER JOIN TBKW_CDDTL CD0002
+						ON A.SCDL_STS = CD0002.CDDTL_DTLCD
+						AND CD0002.CDCLS_CLSCD = '0002'
+		
+					LEFT OUTER JOIN TBKW_CDDTL CD0003
+						ON A.SCDL_RTCD = CD0003.CDDTL_DTLCD
+						AND CD0003.CDCLS_CLSCD = '0003'
+		
+					WHERE 1=1
+					<isNotEqual prepend="" property="SCDL_G_BZCD" compareValue="">
+					AND A.SCDL_G_BZCD = #SCDL_G_BZCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_BZCD" compareValue="">
+					AND A.SCDL_BZCD = #SCDL_BZCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_JBCD" compareValue="">
+					AND A.SCDL_JBCD = #SCDL_JBCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_SCAF_ID" compareValue="">
+					AND A.SCDL_SCAF_ID = #SCDL_SCAF_ID#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_STS" compareValue="">
+					AND A.SCDL_STS = #SCDL_STS#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_RTCD" compareValue="">
+					AND A.SCDL_RTCD = #SCDL_RTCD#
+					</isNotEqual>
+					<isNotEqual prepend="" property="SCDL_RDT_FR" compareValue=""><![CDATA[
+					AND B.NCRQ_RQTM >= #SCDL_RDT_FR#||'000000'
+					]]></isNotEqual>
+					<isNotEqual prepend="" property="SCDL_RDT_TO" compareValue=""><![CDATA[
+					AND B.NCRQ_RQTM <= #SCDL_RDT_TO#||'999999'
+					]]></isNotEqual>
+				) A
+			) B
+		) C
+		WHERE NO BETWEEN TO_NUMBER(#STNO#,'999999999') AND TO_NUMBER(#EDNO#,'999999999')
+	</select>
+
+	<select id="ADM_PRS_S1001A_1" resultClass="oMap" parameterClass="java.util.Map">
+			/*처리현황 목록 건수 조회*/
+			SELECT
+				COUNT(SCDL_SEQ) AS TCNT
+			FROM
+			(
+				SELECT
+					A.SCDL_SEQ
+				FROM TBKW_SCDL_$BF_YYMM$ A
+	
+				INNER JOIN TBKW_NCRQ_$BF_YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+	
+				WHERE 1=1
+				<isNotEqual prepend="" property="SCDL_G_BZCD" compareValue="">
+				AND A.SCDL_G_BZCD = #SCDL_G_BZCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_BZCD" compareValue="">
+				AND A.SCDL_BZCD = #SCDL_BZCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_JBCD" compareValue="">
+				AND A.SCDL_JBCD = #SCDL_JBCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_SCAF_ID" compareValue="">
+				AND A.SCDL_SCAF_ID = #SCDL_SCAF_ID#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_STS" compareValue="">
+				AND A.SCDL_STS = #SCDL_STS#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_RTCD" compareValue="">
+				AND A.SCDL_RTCD = #SCDL_RTCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_RDT_FR" compareValue=""><![CDATA[
+				AND B.NCRQ_RQTM >= #SCDL_RDT_FR#||'000000'
+				]]></isNotEqual>
+				<isNotEqual prepend="" property="SCDL_RDT_TO" compareValue=""><![CDATA[
+				AND B.NCRQ_RQTM <= #SCDL_RDT_TO#||'999999'
+				]]></isNotEqual>
+				
+				UNION ALL
+				
+				SELECT
+					A.SCDL_SEQ
+				FROM TBKW_SCDL_$YYMM$ A
+	
+				INNER JOIN TBKW_NCRQ_$YYMM$ B
+					ON A.NCRQ_SEQ = B.NCRQ_SEQ
+	
+				WHERE 1=1
+				<isNotEqual prepend="" property="SCDL_G_BZCD" compareValue="">
+				AND A.SCDL_G_BZCD = #SCDL_G_BZCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_BZCD" compareValue="">
+				AND A.SCDL_BZCD = #SCDL_BZCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_JBCD" compareValue="">
+				AND A.SCDL_JBCD = #SCDL_JBCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_SCAF_ID" compareValue="">
+				AND A.SCDL_SCAF_ID = #SCDL_SCAF_ID#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_STS" compareValue="">
+				AND A.SCDL_STS = #SCDL_STS#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_RTCD" compareValue="">
+				AND A.SCDL_RTCD = #SCDL_RTCD#
+				</isNotEqual>
+				<isNotEqual prepend="" property="SCDL_RDT_FR" compareValue=""><![CDATA[
+				AND B.NCRQ_RQTM >= #SCDL_RDT_FR#||'000000'
+				]]></isNotEqual>
+				<isNotEqual prepend="" property="SCDL_RDT_TO" compareValue=""><![CDATA[
+				AND B.NCRQ_RQTM <= #SCDL_RDT_TO#||'999999'
+				]]></isNotEqual>
+			) A
+	</select>
+	
+	<select id="ADM_PRS_V1000A"  parameterClass="java.util.Map" resultClass="oMap">
+		/*처리현황 상세 조회*/
+		SELECT B.NCRQ_SCRQ
+			 , B.NCRQ_SCRS
+			 , A.SCDL_OSTR
+			 , A.SCDL_ABRQ
+			 , A.SCDL_ABRS
+			 , A.SCDL_RTRQ
+			 , A.SCDL_RTRS
+			 , A.SCDL_AFRQ
+			 , A.SCDL_AFRS
+			 , A.SCDL_LTRQ
+			 , A.SCDL_LTRS
+		FROM TBKW_SCDL_$YYMM$ A
+		INNER JOIN TBKW_NCRQ_$YYMM$ B
+			ON A.NCRQ_SEQ = B.NCRQ_SEQ
+		WHERE A.SCDL_SEQ = #SCDL_SEQ#
+	</select>
+</sqlMap>

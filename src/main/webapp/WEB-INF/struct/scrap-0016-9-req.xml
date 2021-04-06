@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- (국민연금)가입증명 및 가입내역 -->
+	<element name="DOCUNUMBER"		mappingElement="DC_NO"		default=""/>	<!-- 발급번호 -->
+	<element name="ISSUEDATE"		mappingElement="ISS_DAT"	default=""/>	<!-- 발급일자 -->
+	<element name="CHECKNUMBER"		mappingElement="CHK_NB"		default=""/>	<!-- 검증번호 -->
+	<element name="DOCUFILENAME"	mappingElement="DC_FL_NM"	default=""/>	<!-- 파일명 -->
+	<element name="PRINTYN"			default="3"/>	<!-- PDF파일 저장여부 : 3(저장) -->
+	<element name="TRANSTYPE"		default="1"/>   <!--FTP TYPE  -->
+</struct>

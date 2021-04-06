@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 건강보험증명서 발급사실확인서 정보등록  -->
+	<field name="H_LNTH"			length="10"		type="AN"	default=""			xpath39=""	/>
+	<field name="H_GP_CD"			length="9"		type="AN"	default="NICEIF   "	xpath39=""	/>
+	<field name="H_KN_CD"			length="4"		type="N"	default="0300"		xpath39=""	/>
+	<field name="H_BZ_CD"			length="5"		type="AN"	default="3A055"		xpath39=""	/> <!-- 거래구분코드 -->
+	<field name="H_T_FLG"			length="1"		type="AN"	default="B"			xpath39=""	/>
+	<field name="H_DVC_KN"			length="3"		type="AN"	default="503"		xpath39=""	/>	<!-- 단말기 구분 -->
+	<field name="H_RTCD"			length="4"		type="AN"	default=""			xpath39=""	/>	<!-- 응답코드 -->
+	<field name="H_ORG_ID"			length="9"		type="AN"	default=""			xpath39=""	/> <!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"		length="10"		type="N"	default=""			xpath39=""	/>
+	<field name="H_ORG_RQTM"		length="14"		type="N"	default=""			xpath39=""	/>
+	<field name="H_NCE_TL_NO"		length="10"		type="N"	default=""			xpath39=""	/> <!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"		length="14"		type="N"	default=""			xpath39=""	/> <!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"				length="17"		type="AN"	default=""			xpath39=""	/>
+	
+	<field name="G_BZCD"			length="2"		type="AN"	default="39"		xpath39=""	/>	<!-- 상품코드 -->
+	<field name="CST_MBR_NO"		length="20"		type="AN"	default=""			xpath39=""	/> 	<!-- 회원사 고객번호 -->
+	<field name="USR_ID"			length="40"		type="AN"	default=""			xpath39=""	/>	<!-- 사용자id -->
+	<field name="PRC_STS"			length="2"		type="AN"	default="02"		xpath39=""	/>	<!-- 진행상태 -->
+	<field name="RTCD"				length="4"		type="AN"	default=""			xpath39=""	/>	<!-- 스크래핑 응답코드 -->
+	<field name="USYN"				length="1"		type="AN"	default="Y"			xpath39=""	/>	<!-- 사용구분 -->
+	<field name="SRC_GB"			length="1"		type="AN"	default="5"			xpath39=""	/>	<!-- 스크래핑 제공구분 -->
+	<field name="USR_KN"			length="1"		type="AN"	default="1"			xpath39=""	/>	<!-- 사용자구분 -->
+	<field name="SCAF_ID"			length="12"		type="AN"	default="" 			xpath39=""	/>	<!-- SCAF_ID -->
+	
+	<field name="DOCTYPE"			length="1"		type="AN"	default="" 			xpath39="DOCTYPE"	/>	<!-- 문서종류 -->
+	<field name="BRTH"				length="8"		type="AN"	default="" 			xpath39="BIRTHDAY"	/>	<!-- 생년월일 -->
+	<field name="NM"				length="20"		type="AN"	default=""			xpath39="USERNAME"	/>		<!-- 성명 -->
+	<field name="DC_NO"				length="20"		type="AN"	default=""			xpath39="PRINTNUM"	/>		<!-- 증명서발급번호 -->
+	<field name="DC_DAT"			length="8"		type="AN"	default=""			xpath39="PRINTDATE"	/>		<!-- 증명서 발급일자 -->
+	
+	<field name="FLR"				length="15"		type="AN"	default=""			xpath39=""	/>				<!-- 공란 -->
+	<field name="ER_CK_BT"			length="40"		type="AN"	default=""			xpath39=""	/>				<!-- 에러체크비트 -->
+	<field name="ER_RTCD"			length="4"		type="AN"	default=""			xpath39=""	/>				<!-- 오류응답코드 -->
+
+	<field name="DC_LST_CNT"		length="3"		type="N"	default=""			xpath39=""	/>			<!-- 반복건수 -->
+	
+	<!-- 납부내역리스트 -->
+	<field name="DC_LST"		type="LST"		loopElement="DC_LST_CNT"	xpath39="LISTLOOP/LIST">
+		<field name="DC_LST_PAYMON"		length="8"		type="AN"	default=""		xpath39="PAYMON"/>	<!-- 조회년월 -->
+		<field name="DC_LST_PRINTGUBUN"	length="5"		type="AN"	default=""		xpath39="//OUTPUT/PRINTGUBUN"/>		<!-- 증명서 발급구분 -->
+		<field name="DC_LST_INSUNUM"	length="12"		type="AN"	default=""		xpath39="INSUNUM"/>	<!-- 납부자번호 -->
+		
+		<field name="DC_LST_JGHNOTIAMT"		length="15"		type="AN"	default=""		xpath39="JGHNOTIAMT"/>	<!-- 직장고지 건강보험료 -->
+		<field name="DC_LST_JGCNOTIAMT"		length="15"		type="AN"	default=""		xpath39="JGCNOTIAMT"/>	<!-- 직장고지 요양보험료 -->
+		<field name="DC_LST_JNHNOTIAMT"		length="15"		type="AN"	default=""		xpath39="JNHNOTIAMT"/>	<!-- 직장납부 건강보험료 -->
+		<field name="DC_LST_JNCNOTIAMT"		length="15"		type="AN"	default=""		xpath39="JNCNOTIAMT"/>	<!-- 직장납부 요양보험료 -->
+		
+		<field name="DC_LST_SGHNOTIAMT"		length="15"		type="AN"	default=""		xpath39="SGHNOTIAMT"/>	<!-- 소득고지 건강보험료 -->
+		<field name="DC_LST_SGCNOTIAMT"		length="15"		type="AN"	default=""		xpath39="SGCNOTIAMT"/>	<!-- 소득고지 요양보험료 -->
+		<field name="DC_LST_SNHNOTIAMT"		length="15"		type="AN"	default=""		xpath39="SNHNOTIAMT"/>	<!-- 소득납부 건강보험료 -->
+		<field name="DC_LST_SNCNOTIAMT"		length="15"		type="AN"	default=""		xpath39="SNCNOTIAMT"/>	<!-- 소득납부 요양보험료 -->
+		
+		<field name="DC_LST_LGHNOTIAMT"		length="15"		type="AN"	default=""		xpath39="LGHNOTIAMT"/>	<!-- 지역고지 건강보험료 -->
+		<field name="DC_LST_LGCNOTIAMT"		length="15"		type="AN"	default=""		xpath39="LGCNOTIAMT"/>	<!-- 지역고지 요양보험료 -->
+		<field name="DC_LST_LNHNOTIAMT"		length="15"		type="AN"	default=""		xpath39="LNHNOTIAMT"/>	<!-- 지역납부 건강보험료 -->
+		<field name="DC_LST_LNCNOTIAMT"		length="15"		type="AN"	default=""		xpath39="LNCNOTIAMT"/>	<!-- 지역납부 요양보험료 -->
+		
+		<field name="FLR"				length="3"		type="AN"	default=""		xpath39=""	/>				<!-- 공란 -->
+	</field>
+</struct>

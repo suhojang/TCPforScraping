@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 수출차 조회 -->
+	<element name="CARREGINUMBER"     mappingElement="VSRL_NO"	  default=""/> <!-- 차대번호 -->
+</struct>

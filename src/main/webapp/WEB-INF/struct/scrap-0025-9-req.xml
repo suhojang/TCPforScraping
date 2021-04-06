@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<element name="ISSUENUM"  mappingElement="ISSUE_NO"	  default=""/>	<!-- 발급번호 -->
+	<element name="ISSUEDATE" mappingElement="ISSUE_DATE" default=""/>	<!-- 발급일자 -->
+	<element name="ISSUEKEY"  mappingElement="ISSUE_KEY"  default=""/>	<!-- 생년월일 -->
+	<element name="USERIP"		                          default=""/>
+	<element name="USERPORT"	                          default=""/>
+</struct>

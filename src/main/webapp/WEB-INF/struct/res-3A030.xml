@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 인감증명서 발급사실 확인 -->
+	<field name="H_LNTH"			length="10"		type="AN"	default=""	/>
+	<field name="H_GP_CD"			length="9"		type="AN"	default="NICEIF   "	/>
+	<field name="H_KN_CD"			length="4"		type="N"	default="0300"	/>
+	<field name="H_BZ_CD"			length="5"		type="AN"	default="3A030"	/> <!-- 거래구분코드 -->
+	<field name="H_T_FLG"			length="1"		type="AN"	default="N"		/>
+	<field name="H_DVC_KN"			length="3"		type="AN"	default="503"	/>
+	<field name="H_RTCD"			length="4"		type="AN"	default=""	/>
+	<field name="H_ORG_ID"			length="9"		type="AN"	default=""	/> <!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"		length="10"		type="N"	default=""	/>
+	<field name="H_ORG_RQTM"		length="14"		type="N"	default=""	/>
+	<field name="H_NCE_TL_NO"		length="10"		type="N"	default=""	/> <!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"		length="14"		type="N"	default=""	/> <!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"				length="17"		type="AN"	default=""	/>
+	
+	<field name="G_BZCD"			length="2"		type="AN"	default="24"/>
+	<field name="CST_MBR_NO"		length="20"		type="AN"	default=""	/> <!-- 회원사 고객번호 --> 
+	<field name="USR_ID"			length="40"		type="AN"	default=""	/>
+	<field name="PRC_STS"			length="2"		type="AN"	default="02"/>
+	<field name="RTCD"				length="4"		type="AN"	default=""	/>
+	<field name="USYN"				length="1"		type="AN"	default="Y"	/>
+	<field name="SRC_GB"			length="1"		type="AN"	default="1"	/>
+	<field name="BZ24_14_08"		length="13"		type="AN"	default=""	/>
+	<field name="BZ24_14_09"		length="50"		type="AN"	default=""	/>
+	<field name="BZ24_14_10"		length="8"		type="AN"	default=""	/>
+	<field name="BZ24_14_11"		length="4"		type="AN"	default=""	/>
+	<field name="BZ24_14_12"		length="8"		type="AN"	default=""	/>
+	<field name="BZ24_14_13"		length="6"		type="AN"	default=""	/>
+	<field name="BZ24_14_14"		length="14"		type="AN"	default=""	/>
+	<field name="BZ24_14_15"		length="1"		type="AN"	default=""	/>
+	<field name="BZ24_14_16"		length="30"		type="AN"	default=""	/>
+	<field name="SCAF_ID"			length="12"		type="AN"	default=""	/>
+	<field name="FLR"				length="60"		type="AN"	default=""	/>
+	<field name="ER_CK_BT"			length="20"		type="AN"	default=""	/>
+	<field name="ER_RTCD"			length="4"		type="AN"	default=""	/>
+</struct>

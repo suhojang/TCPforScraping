@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- (홈택스)부가세과세표준증명원 -->
+	<field name="SCAF_ID"	length="12"		type="AN"	default=""/>	<!-- SCAF_ID -->
+	<field name="SSN"		length="10"		type="AN"	default=""/>	<!-- 사업자번호 -->
+	<field name="DC_NO"	 	length="50"		type="AN"	default=""/>	<!-- 발급번호 -->
+	<field name="DC_FL_NM" 	length="100"	type="AN"	default=""/>	<!-- 문서파일명 -->
+	<field name="FLR"		length="26"		type="AN"	default=""/>	<!-- 공란 -->
+</struct>

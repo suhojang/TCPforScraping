@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 민원24 주민등록증 진위여부 -->
+	<element name="JUMIN"     mappingElement="SSN"	  default=""/> <!-- 주민등록번호 -->
+	<element name="NAME"	  mappingElement="NM"	  default=""/> <!-- 성명 -->
+	<element name="ISSUEDATE" mappingElement="PBL_DT" default=""/> <!-- 발급일자 -->
+</struct>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 민원24 주민등록 등초본 발급이력조회(온라인) -->
+	<element name="ISSUEKEY"   mappingElement="ISSUE_KEY" default=""/>	<!-- 성명 -->
+	<element name="ISSUENUM"   mappingElement="ISSUE_NO"  default=""/>	<!-- 발급번호 -->
+	<element name="ISSUEDATE"	                          default=""/>
+	<element name="ISSUEKEY2"	                          default=""/>	<!-- 생년월일 -->
+	<element name="USERIP"		                          default=""/>
+	<element name="USERPORT"	                          default=""/>
+</struct>

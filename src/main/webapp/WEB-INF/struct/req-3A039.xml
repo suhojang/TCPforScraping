@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 자동차등록원부(갑,을,소유자검증) 발급  -->
+	<field name="H_LNTH"			length="10"		type="AN"	default=""			xpath17=""	/>
+	<field name="H_GP_CD"			length="9"		type="AN"	default="NICEIF   "	xpath17=""	/>
+	<field name="H_KN_CD"			length="4"		type="N"	default="0300"		xpath17=""	/>
+	<field name="H_BZ_CD"			length="5"		type="AN"	default="3A039"		xpath17=""	/> <!-- 거래구분코드 -->
+	<field name="H_T_FLG"			length="1"		type="AN"	default="B"			xpath17=""	/>
+	<field name="H_DVC_KN"			length="3"		type="AN"	default="503"		xpath17=""	/>	<!-- 단말기 구분 -->
+	<field name="H_RTCD"			length="4"		type="AN"	default=""			xpath17=""	/>	<!-- 응답코드 -->
+	<field name="H_ORG_ID"			length="9"		type="AN"	default=""			xpath17=""	/> <!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"		length="10"		type="N"	default=""			xpath17=""	/>
+	<field name="H_ORG_RQTM"		length="14"		type="N"	default=""			xpath17=""	/>
+	<field name="H_NCE_TL_NO"		length="10"		type="N"	default=""			xpath17=""	/> <!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"		length="14"		type="N"	default=""			xpath17=""	/> <!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"				length="17"		type="AN"	default=""			xpath17=""	/>
+	
+	<field name="G_BZCD"			length="2"		type="AN"	default="17"		xpath17=""	/>
+	<field name="CST_MBR_NO"		length="20"		type="AN"	default=""			xpath17=""	/> <!-- 회원사 고객번호 -->
+	<field name="USR_ID"			length="40"		type="AN"	default=""			xpath17=""	/>
+	<field name="PRC_STS"			length="2"		type="AN"	default="02"		xpath17=""	/>
+	<field name="RTCD"				length="4"		type="AN"	default=""			xpath17=""	/>	<!-- 스크래핑 응답코드 -->
+	<field name="USYN"				length="1"		type="AN"	default="Y"			xpath17=""	/>
+	<field name="SRC_GB"			length="1"		type="AN"	default="5"			xpath17=""	/>
+	<field name="USR_KN"			length="1"		type="AN"	default="1"			xpath17=""	/>
+	<field name="DC1_OWNO"			length="13"		type="AN"	default=""			xpath17="ORIGINALCOPY/REGSENO"	filter="SSN"/>
+	<field name="UDF_NM"			length="20"		type="AN"	default=""			xpath17="ORIGINALCOPY/MBERNAME"	/>
+	<field name="DC1_VHCL_NO"		length="12"		type="AN"	default=""			xpath17="ORIGINALCOPY/CARREGNO"	/>
+	<field name="VSRL_NO"			length="30"		type="AN"	default=""			xpath17="DISTINCTNUMBER"	/>
+	<field name="RLYN"				length="1"		type="AN"	default=""			xpath17="CHECKRESULTYN"	/>
+	<field name="PBL_DPRT"			length="50"		type="AN"	default=""			xpath17="ISSUEAREA"	/>
+	<field name="DC1_DAT_MNG_NO"	length="50"		type="AN"	default=""			xpath17="ORIGINALCOPY/SPMNNO"	/>
+	<field name="DC1_VHL_NM"		length="30"		type="AN"	default=""			xpath17="ORIGINALCOPY/CARNAME"	/>
+	<field name="DC1_VHL_KN"		length="30"		type="AN"	default=""			xpath17="ORIGINALCOPY/CARMODEL"	/>
+	<field name="DC1_MTR_FRM"		length="30"		type="AN"	default=""			xpath17="ORIGINALCOPY/MTRSFOMNM"	/>
+	<field name="DC1_US"			length="30"		type="AN"	default=""			xpath17="ORIGINALCOPY/CARUSE"	/>
+	<field name="DC1_MDL_YR"		length="4"		type="AN"	default=""			xpath17="ORIGINALCOPY/MODELYEAR"	/>
+	<field name="DC1_CLR"			length="10"		type="AN"	default=""			xpath17="ORIGINALCOPY/COLOR"	/>
+	<field name="DC1_SRC_KN"		length="20"		type="AN"	default=""			xpath17="ORIGINALCOPY/REGISTGUBUN"	/>
+	<field name="DC1_FST_RDT"		length="8"		type="AN"	default=""			xpath17="ORIGINALCOPY/FRSTREGDATE"	filter="DATE"/>
+	<field name="DC1_DTL_KN"		length="30"		type="AN"	default=""			xpath17="ORIGINALCOPY/DETAILTYPE"	/>
+	<field name="DC1_MNF_YR"		length="8"		type="AN"	default=""			xpath17="ORIGINALCOPY/MAKEDATE"		filter="DATE"/>
+	<field name="DC1_OWNM"			length="20"		type="AN"	default=""			xpath17="ORIGINALCOPY/MBERNAME"	/>
+	<field name="DC1_GBG_ARA"		length="200"	type="AN"	default=""			xpath17="ORIGINALCOPY/CARADDRESS"	/>
+	<field name="DC1_INS_VLDT"		length="70"		type="AN"	default=""			xpath17="ORIGINALCOPY/INSVALIDDATE"	/>
+	<field name="SCAF_ID"			length="12"		type="AN"	default=""			xpath17=""	/>
+	<field name="UDF_NM2"			length="50"		type="AN"	default=""			xpath17="ORIGINALCOPY/MBERNAME"	/>
+	<field name="FLR"				length="50"		type="AN"	default=""			xpath17=""	/>
+	<field name="DC1_DT_LST_CNT"	length="3"		type="N"	default=""			xpath17=""	/>
+	<field name="DC2_LST_CNT"		length="3"		type="N"	default=""			xpath17=""	/>
+	
+	<field name="DC1_DT_LST"		type="LST"		loopElement="DC1_DT_LST_CNT"	xpath17="ORIGINALCOPY/DETAIL/LISTLOOP/LIST">
+		<field name="DC1_DT_M_RKNO"	length="10"		type="AN"	default=""		xpath17="MAINNO"	/>
+		<field name="DC1_DT_S_RKNO"	length="10"		type="AN"	default=""		xpath17="SUBNO"	/>
+		<field name="DC1_DT_NTC"	length="200"	type="AN"	default=""		xpath17="DESINFO"	/>
+		<field name="DC1_DT_RGNO"	length="13"		type="AN"	default=""		xpath17="REGSENO"	filter="SSN"/>
+		<field name="DC1_DT_RDT"	length="8"		type="AN"	default=""		xpath17="REGDATE"	filter="DATE"/>
+		<field name="DC1_DT_ACNO"	length="50"		type="AN"	default=""		xpath17="ACCEPTNO"	/>
+	</field>
+	<field name="DC2_LST"			type="LST"		loopElement="DC2_LST_CNT"		xpath17="ABSTRACTCOPY/LISTLOOP/LIST">
+		<field name="DC2_MTG_NO"		length="30"		type="AN"	default=""		xpath17="SCLDGRNO"	/>
+		<field name="DC2_MTG_ACNO"		length="30"		type="AN"	default=""		xpath17="MRTGRQRCNO"	/>
+		<field name="DC2_MTG_NM"		length="40"		type="AN"	default=""		xpath17="MRTENAME"	/>
+		<field name="DC2_MTG_ADR"		length="200"	type="AN"	default=""		xpath17="MRTEADDRESS"	/>
+		<field name="DC2_CFR_NM"		length="40"		type="AN"	default=""		xpath17="OWNERNAME"	/>
+		<field name="DC2_CFR_ADR"		length="200"	type="AN"	default=""		xpath17="OWNERADDRESS"	/>
+		<field name="DC2_DBR_NM"		length="40"		type="AN"	default=""		xpath17="DEBTRNAME"	/>
+		<field name="DC2_DBR_ADR"		length="200"	type="AN"	default=""		xpath17="DEBTRADDRESS"	/>
+		<field name="DC2_BND_VAL"		length="15"		type="AN"	default=""		xpath17="CDITAMT"	filter="AMT"/>
+		<field name="DC2_CF_RDT"		length="8"		type="AN"	default=""		xpath17="ESTBSDATE"	filter="DATE"/>
+		<field name="DC2_CF_TMDT"		length="8"		type="AN"	default=""		xpath17="TRMNATDATE"	filter="DATE"/>
+		<field name="DC2_RK_LST_CNT"	length="3"		type="N"	default=""		xpath17=""	/>
+		<field name="DC2_JN_LST_CNT"	length="3"		type="N"	default=""		xpath17=""	/>
+
+		<field name="DC2_RK_LST"	type="LST"		loopElement="DC2_RK_LST_CNT"	xpath17="ABSDETAIL/LISTLOOP/LIST">
+			<field name="DC2_RK_RKNO"		length="10"		type="AN"	default=""		xpath17="MAINNO"	/>
+			<field name="DC2_RK_MTG_KN"		length="50"		type="AN"	default=""		xpath17="GUBUN"	/>
+			<field name="DC2_RK_NTC"		length="200"	type="AN"	default=""		xpath17="DESINFO"	/>
+			<field name="DC2_RK_RDT"		length="8"		type="AN"	default=""		xpath17="REGDATE"	filter="DATE"/>
+		</field>
+		<field name="DC2_JN_LST"	type="LST"		loopElement="DC2_JN_LST_CNT"	xpath17="JOINSAVE/LISTLOOP/LIST">
+			<field name="DC2_JN_KN"			length="10"		type="AN"	default=""		xpath17="KIND"	/>
+			<field name="DC2_JN_VHCL_NO"	length="20"		type="AN"	default=""		xpath17="CARNO"	/>
+			<field name="DC2_JN_RDT"		length="8"		type="AN"	default=""		xpath17="ESTBSDATE"	filter="DATE"/>
+			<field name="DC2_JN_TMDT"		length="8"		type="AN"	default=""		xpath17="ERSRDATE"	filter="DATE"/>
+		</field>
+	</field>
+	
+</struct>

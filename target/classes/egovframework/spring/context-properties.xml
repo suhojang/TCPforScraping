@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<bean name="propertiesService" class="egovframework.rte.fdl.property.impl.EgovPropertyServiceImpl" destroy-method="destroy">
+		<property name="properties">
+	        <map>
+	        	<!-- 블럭 당 페이지 수 -->
+	        	<entry key="pageUnit" value="10"/>
+	        	<!-- 페이지 당 조회 건수 -->
+	        	<entry key="pageSize" value="50"/>
+	        	<!-- 암복호화키 -->
+	        	<entry key="encryptKey" value="A!B1C@D2E#F3GHIJKLMNOPQRSTUVWXYZ"/>
+	        	<!-- test/real server -->
+	        	<entry key="isReal" value="false"/>
+	        	<!-- 쿼리 로그 보기 -->
+	        	<entry key="debugQuery" value="false"/>
+	        	<entry key="isMaster" value="true"/>
+	        </map>
+		</property>
+	</bean>
+	
+</beans>	

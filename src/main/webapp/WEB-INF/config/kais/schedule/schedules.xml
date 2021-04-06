@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<entry key="manageips_name">Manage Ips</entry>
+	<entry key="manageips_key">manageips</entry>
+	<entry key="manageips_cron">0 0/1 * * * *</entry>
+	<entry key="manageips_lastday">N</entry>
+	<entry key="manageips_params"><![CDATA[]]></entry>
+	<entry key="manageips_type">2</entry>
+</properties>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                           http://www.springframework.org/schema/mvc 
+                           http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <context:component-scan base-package="project">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="webBindingInitializer">
+            <bean class="com.kwic.web.cmmn.EgovBindingInitializer"/>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="mgrMenuInterceptor"/>	  <!-- 1) 메뉴 접근 감시자 -->
+                <ref bean="requestTokenInterceptor"/> <!-- 2) 중복실행 방지 감시자 -->
+                <ref bean="mgrAuthInterceptor"/>	  <!-- 3) 권한 감시자 -->
+                <ref bean="mgrActionTracker"/>		  <!-- 4) 관리자 이력 감시자 -->
+                <ref bean="localeChangeInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    
+ 	<!-- 1) 메뉴 접근 감시자 -->
+	<bean id="mgrMenuInterceptor" class="com.kwic.web.servlet.MenuInterceptor">
+		<!--
+			[filterType]
+			includePattern에 해당하고,  excludeUrlPattern에 해당하지 않는 uri 처리 : 1
+			excludeUrlPattern에 해당하지 않거나, includePattern에 해당하는 uri처리 : 2
+		-->
+		<property name="filterType" value="1"/>
+		
+		<!-- interceptor를 적용할  url pattern 목록-->
+		<property name="includeUrlPattern">
+			<list>
+				<value>/ADM*</value>
+				<value>/ADM*/*</value>
+			</list>
+		</property>
+		
+		<!-- interceptor를 적용하지 않을  url pattern 목록-->
+		<property name="excludeUrlPattern">
+			<list>
+			</list>
+		</property>
+	</bean>	
+
+	<!-- 2) 중복실행 방지 감시자 -->
+	<bean id="requestTokenInterceptor" class="com.kwic.web.servlet.RequestTokenInterceptor">
+		<property name="makeTokenUrlPattern">
+			<list>
+				<value>/ADM_**0/</value>
+				<value>/kwic/</value>
+			</list>
+		</property>
+		<property name="checkUrlPattern">
+			<list>
+				<value>/ADM_LGN_01000A/</value>
+				<value>/ADM_PCD_I1110A/</value>
+				<value>/ADM_PCD_U1120A/</value>
+				<value>/ADM_PCD_D1130A/</value>
+				<value>/ADM_PCD_I1210A/</value>
+				<value>/ADM_PCD_U1220A/</value>
+				<value>/ADM_PCD_D1230A/</value>
+				<value>/ADM_MNU_U1020A/</value>
+				<value>/ADM_MNU_U2020A/</value>
+				<value>/ADM_MNU_U3020A/</value>
+				<value>/ADM_ATH_U1020A/</value>
+				<value>/ADM_ATH_U2020A/</value>
+				<value>/ADM_ATH_U3020A/</value>
+				<value>/ADM_USR_I1010A/</value>
+				<value>/ADM_USR_U1020A/</value>
+				<value>/ADM_USR_D1030A/</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 3) 권한 감시자 -->
+	<bean id="mgrAuthInterceptor" class="com.kwic.web.servlet.AuthInterceptor">
+		<property name="atrtributeName" value="MgrInfoRec"/>    <!-- project.kais.record.MgrInfoRec 클래스 참고 -->
+		<property name="xmlMethodName"  value="getUrixml"/>     <!-- project.kais.record.MgrInfoRec.getUrixml() 호출 -->
+		<property name="grdMethodName"  value="getMgrinf_grd"/> <!-- project.kais.record.MgrInfoRec.getMgrinf_grd() 호출 -->
+		<property name="redirectUrl"    value="/kwic/"/>
+		
+		<!--
+			[filterType]
+			includePattern에 해당하고,  excludeUrlPattern에 해당하지 않는 uri 처리 : 1
+			excludeUrlPattern에 해당하지 않거나, includePattern에 해당하는 uri처리 : 2
+		-->
+		<property name="filterType" value="1"/>
+		
+		<!-- interceptor를 적용할  url pattern 목록-->
+		<property name="includeUrlPattern">
+			<list>
+				<value>/ADM*</value>
+				<value>/ADM*/*</value>
+			</list>
+		</property>
+		
+		<!-- interceptor를 적용하지 않을  url pattern 목록-->
+		<property name="excludeUrlPattern">
+			<list>
+				<value>/ADM_LGN_010000/</value><!-- 로그인 화면 -->
+				<value>/ADM_LGN_01000A/</value><!-- 로그인 -->
+				<value>/ADM_LGN_01010A/</value><!-- 로그아웃 -->
+			</list>
+		</property>
+	</bean>
+
+	<!-- 4) 관리자 이력 감시자 -->
+	<bean id="mgrActionTracker" class="com.kwic.web.servlet.ActionTracker">
+		<property name="id"             value="mgrActionTracker" />
+		<property name="atrtributeName" value="MgrInfoRec"/>
+		<property name="path"           value="D:/logs/KAIS/admin/mgr.%yyyy%-%MM%-%dd%.log"/>
+		<property name="methodName"     value="getMgrinf_id" />
+		<property name="encryptParams"  value="MGRINF_PWD,MGRINF_PWD2,CSTINF_PWD,CSTINF_PWD2,ESRINF_FL1,ESRINF_FL2,ESRINF_PWD,RCPINF_FL1,RCPINF_FL2,RCPINF_PWD,CRDSAL_PWD,CRDPCS_PWD,CRDCRT_FL1,CRDCRT_FL2,CRDCRT_PWD,ANTRPS_PWD,ANTRPS_IBPWD,ANTCRT_FL1,ANTCRT_FL2,ANTCRT_PWD," />
+		<property name="filterType"     value="1"/>
+		
+		<property name="includeUrlPattern">
+			<list>
+				<value>/ADM*</value>
+				<value>/ADM*/*</value>
+			</list>
+		</property>
+		
+		<property name="excludeUrlPattern">
+			<list>
+			</list>
+		</property>
+	</bean>	
+    
+    <!-- 쿠키를 이용한 Locale 이용시 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="language" />
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="cmmn/egovError"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.dao.DataAccessException">cmmn/dataAccessFailure</prop>
+                <prop key="org.springframework.transaction.TransactionException">cmmn/transactionFailure</prop>
+                <prop key="egovframework.rte.fdl.cmmn.exception.EgovBizException">cmmn/egovError</prop>
+                <prop key="org.springframework.security.AccessDeniedException">cmmn/egovError</prop>
+            </props>
+        </property>
+    </bean>
+
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+	      p:order="1"
+	      p:viewClass="org.springframework.web.servlet.view.JstlView"
+	      p:prefix="/WEB-INF/jsp/project/kais/" 
+	      p:suffix=".jsp"/>
+
+    <!-- For Pagination Tag -->
+    <bean id="imageRenderer" class="com.kwic.web.cmmn.EgovImgPaginationRenderer"/>
+
+    <bean id="paginationManager" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+        <property name="rendererType">
+            <map>
+                <entry key="image" value-ref="imageRenderer"/>
+            </map>
+        </property>
+    </bean>
+	<!-- /For Pagination Tag -->
+
+    <mvc:view-controller path="/cmmn/validator" view-name="cmmn/validator"/>
+
+</beans>

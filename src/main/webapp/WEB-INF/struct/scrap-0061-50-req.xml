@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 건강보험 증명서 발급사실 확인 조회 -->
+	<element name="DOCTYPE"		mappingElement="ISSUE_TYPE"		default=""/>
+	<element name="PRINTNUM"	mappingElement="DC_NO"			default=""/>
+	<element name="BIRTHDAY"	mappingElement="BRTH"			default=""/>
+	<element name="USERNAME"	mappingElement="NM"				default=""/>
+</struct>

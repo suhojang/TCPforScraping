@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<condition BZCD='1S111' SPECIALCODE='0009' MODULE='50'>
+		<send-condition>
+			<map>
+				<element name='PRINT' valueType='EXACT' value='Y'/>
+			</map>
+		</send-condition>
+		<params>
+			<!-- RESULTCD는 nice ftp 전송결과인 SCDL_FTPCD로 대체한다. -->
+			<!-- 
+			<param name="RESULTCD" type="code" default="S520">
+				<code value="S522">
+					<response>
+						<element xpath1='//INQNORMALPE'                valueType='EXACT'    value='P'/>
+						<element xpath1='//FILEINFOLIST//TRANSSVRYN'   valueType='NOTEXACT' value='Y'/>
+						<element xpath1='//FILEINFOLIST//TRANSLSAYN'   valueType='EXACT'    value='Y'/>
+						<element xpath1='//FILEINFOLIST//SVRFILEEXIST' valueType='EXACT'    value='Y'/>
+					</response>
+				</code>
+				
+				<code value="S521">
+					<response>
+						<element xpath1='//INQNORMALPE'                valueType='EXACT'    value='P'/>
+						<element xpath1='//FILEINFOLIST//TRANSSVRYN'   valueType='NOTEXACT' value='Y'/>
+						<element xpath1='//FILEINFOLIST//TRANSLSAYN'   valueType='EXACT'    value='Y'/>
+						<element xpath1='//FILEINFOLIST//SVRFILEEXIST' valueType='NOTEXACT' value='Y'/>
+					</response>
+				</code>
+				
+				<code value="P000">
+					<response>
+						<element xpath1='//INQNORMALPE'                valueType='EXACT'    value='P'/>
+						<element xpath1='//FILEINFOLIST//TRANSSVRYN'   valueType='EXACT'    value='Y'/>
+						<element xpath1='//FILEINFOLIST//TRANSLSAYN'   valueType='EXACT'    value='Y'/>
+						<element xpath1='//FILEINFOLIST//SVRFILEEXIST' valueType='NOTEXACT' value='Y'/>
+					</response>
+				</code>
+				<code value="S520">
+					<response>
+						<element xpath1='//INQNORMALPE'                valueType='EXACT'    value='P'/>
+						<element xpath1='//FILEINFOLIST//TRANSSVRYN'   valueType='NOTEXACT' value='Y'/>
+						<element xpath1='//FILEINFOLIST//TRANSLSAYN'   valueType='NOTEXACT' value='Y'/>
+						<element xpath1='//FILEINFOLIST//SVRFILEEXIST' valueType='NOTEXACT' value='Y'/>
+					</response>
+				</code>
+				<code value="S520">
+					<response>
+						<element xpath1='//INQNORMALPE' valueType='EXACT' value='E'/>
+					</response>
+				</code>
+			</param>
+			-->
+			<param name="FILESTOREDT" type="extract" default="">
+				<response>
+					<element xpath1='//REQSTDT'/>
+				</response>
+			</param>
+			<param name="FILEPATH" type="extract" default="">
+				<request>
+					<element xpath1='//DOCUFILENAME'/>
+				</request>
+			</param>
+		</params>
+	</condition>
+	
+	<condition BZCD='1S111' SPECIALCODE='0078' MODULE='71'>
+		<params>
+			<param name="FILEPATH" type="extract" default="">
+				<request>
+					<element xpath1='//DOCUFILENAME'/>
+				</request>
+			</param>
+		</params>
+	</condition>
+	
+	<condition BZCD='1S111' SPECIALCODE='0016' MODULE='9'>
+		<params>
+			<param name="FILEPATH" type="extract" default="">
+				<request>
+					<element xpath1='//DOCUFILENAME'/>
+				</request>
+			</param>
+		</params>
+	</condition>
+	
+	<condition BZCD='1S111' SPECIALCODE='0018' MODULE='13'>
+		<params>
+			<param name="FILEPATH" type="extract" default="">
+				<request>
+					<element xpath1='//DOCUFILENAME'/>
+				</request>
+			</param>
+		</params>
+	</condition>
+	
+	<condition BZCD='1S111' SPECIALCODE='0040' MODULE='51'>
+		<params>
+			<param name="FILEPATH" type="extract" default="">
+				<request>
+					<element xpath1='//DOCUFILENAME'/>
+				</request>
+			</param>
+		</params>
+	</condition>
+	
+</struct>

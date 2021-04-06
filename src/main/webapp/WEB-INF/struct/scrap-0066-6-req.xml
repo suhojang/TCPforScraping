@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 본인서명 사실확인 조회  -->
+	<element name="REGNUMBERGUBUN"  mappingElement="ISSUE_TYPE"	  	default=""/> <!-- 등록번호 구분 -->
+	<element name="REGNUMBER"     	mappingElement="SSN"	  		default=""/> <!-- 등록번호 -->
+	<element name="DOCNUMBER"     	mappingElement="DC_NO"	  		default=""/> <!-- 문서번호 -->
+	<element name="ISSUEORGAN"     	mappingElement="ISSUE_ORG"	  	default=""/> <!-- 발급기관 -->
+	<element name="ISSUEDATE"     	mappingElement="ISSUE_DATE"	  	default=""/> <!-- 발급일자 -->
+</struct>

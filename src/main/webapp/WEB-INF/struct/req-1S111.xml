@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<field name="H_LNTH"		length="10"	type="N"	default=""/>			<!-- 전문길이 -->
+	
+	<!-- 공통부 -->
+	<field name="H_GP_CD"		length="9"	type="AN"	default="NICEIF   "/>	<!-- 전문그룹코드 -->
+	<field name="H_KN_CD"		length="4"	type="AN"	default="0200"/>		<!-- 거래종별코드 -->
+	<field name="H_BZ_CD"		length="5"	type="AN"	default="1S111"/> 		<!-- 거래구분코드 -->
+	<field name="H_T_FLG"		length="1"	type="AN"	default="B"/>			<!-- 송수신 플래그 -->
+	<field name="H_DVC_KN"		length="3"	type="AN"	default="503"/>			<!-- 단말기 구분 -->
+	<field name="H_RTCD"		length="4"	type="AN"	default=""/>			<!-- 응답코드 -->
+	<field name="H_ORG_ID"		length="9"	type="AN"	default=""/> 			<!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"	length="10"	type="AN"	default=""/>			<!-- 기관전문 관리번호 -->
+	<field name="H_ORG_RQTM"	length="14"	type="AN"	default=""/>			<!-- 기관전문 전송시간 -->
+	<field name="H_NCE_TL_NO"	length="10"	type="AN"	default=""/> 			<!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"	length="14"	type="AN"	default=""/> 			<!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"			length="17"	type="AN"	default=""/>			<!-- 공란 -->
+	
+	<!-- 개별요청부 -->	
+	<field name="CST_MBR_NO"	length="20"	type="AN"	default=""/> 			<!-- 회원사 고객번호 -->
+	<field name="SCP_SPL_KN"	length="1"	type="AN"	default="5"/>			<!-- 스크래핑 제공구분 -->
+	<field name="RQ_CNT"		length="3"	type="N"	default=""/> 			<!-- 요청건수 -->
+	<field name="FLR"			length="16"	type="AN"	default=""/>			<!-- 공란 -->	
+	
+	<!-- 요청반복부
+		 17 : 자동차등록원부 요청
+		 18 : 건설기계등록원부 요청
+		 20 : 주민등록증 진위 요청
+		 21 : 운전면허 진위요청
+		 22 : 주민등록 등초본 신위확인
+		 24 : 인감증명서 발급사실 확인
+	 -->
+	<field name="INF_LST"		type="LST"	loopElement="RQ_CNT">
+		<field name="G_BZCD"	length="2"				type="AN"		default=""	/>
+		<field name="G_AREA"	length="conditional"	type="binary"	default=""	target="G_BZCD"	lengthCondtion="17=398,20=198,21=198,22=198,24=198,11=198,12=198,13=198,15=198,26=198,32=198,18=398,25=198,27=198" />
+	</field>
+	<!-- 
+		11,12,13,15,26,32 상품코드 추가
+		11 : (홈택스)부가세과세표준증명원
+		12 : (홈택스)표준재무제표증명원
+		13 : (홈택스)사업자등록증명원 발급
+		15 : (홈택스)소득금액증명원
+		26 : (홈택스)부가가치세 면세사업자 수입금액증명원
+		32 : (국민연금)가입증명 및 가입내역
+	 -->	
+</struct>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<!-- 
+	%d 로깅 이벤트가 발생한 시간을 출력
+	%p 로그내용 출력
+	%c 카테고리 출력
+	%m
+	%n 플랫폼 종속적인 개행문자 출력
+	%L 로깅이 발생한 caller의 라인수 출력
+	 -->
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %5p [%c:%4L] %m%n" />
+            <!-- <PatternLayout pattern="%d %5p [%c] %m%n" /> -->
+        </Console>
+		<RollingFile name="rollingFile" fileName="D:/logs/KAIS/KAIS.log" filePattern="D:/logs/KAIS/general/KAIS.%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="%d %5p [%c:%4L] %m%n" />
+			<!-- <PatternLayout pattern="%d %5p [%c] %m%n" /> -->
+			<Policies>
+				<!-- interval(default 1)이므로 1초 간격으로 rolling 수행 --> 
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB"/>
+			</Policies>
+		</RollingFile>
+		<RollingFile name="errorFile" fileName="D:/logs/KAIS/error.log" filePattern="D:/logs/KAIS/error/error.%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="%d %5p [%c] %m%n" />
+			<Policies>
+				<!-- interval(default 1)이므로 1초 간격으로 rolling 수행 --> 
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB"/>
+			</Policies>
+		</RollingFile>
+    </Appenders>
+    <Loggers>  
+        <Logger name="com.kwic" level="WARN" additivity="false">
+            <AppenderRef ref="console" />
+			<!-- <AppenderRef ref="rollingFile"/> -->
+        </Logger>
+        <Logger name="project.kais" level="debug" additivity="false">
+            <AppenderRef ref="console" />
+			<!-- <AppenderRef ref="rollingFile"/> -->
+        </Logger>
+        <Logger name="java.sql" level="WARN" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="egovframework" level="WARN" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="jdbc.sqltiming" level="WARN" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.springframework" level="WARN" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="error" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+			<!-- <AppenderRef ref="errorFile"/> -->
+        </Logger>
+        <Root level="debug">
+            <AppenderRef ref="console" />
+			<!-- <AppenderRef ref="rollingFile"/> -->
+        </Root>
+    </Loggers>
+</Configuration>

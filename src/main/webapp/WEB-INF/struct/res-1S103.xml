@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<field name="H_LNTH"		length="10"	type="AN"	default="" 			xpath20=""	xpath21=""/> <!-- 전문길이 -->
+	
+	<!-- 공통부 -->
+	<field name="H_GP_CD"		length="9"	type="AN"	default="NICEIF   " xpath20=""	xpath21=""/> <!-- 전문그룹코드 -->
+	<field name="H_KN_CD"		length="4"	type="N"	default="0310" 		xpath20=""	xpath21=""/> <!-- 거래종별코드 -->
+	<field name="H_BZ_CD"		length="5"	type="AN"	default="1S103" 	xpath20=""	xpath21=""/> <!-- 거래구분코드 -->
+	<field name="H_T_FLG"		length="1"	type="AN"	default="N" 		xpath20=""	xpath21=""/> <!-- 송수신 플래그 -->
+	<field name="H_DVC_KN"		length="3"	type="AN"	default="503" 		xpath20=""	xpath21=""/> <!-- 단말기 구분 -->
+	<field name="H_RTCD"		length="4"	type="AN"	default="" 			xpath20=""	xpath21=""/> <!-- 응답코드 -->
+	<field name="H_ORG_ID"		length="9"	type="AN"	default="" 			xpath20=""	xpath21=""/> <!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"	length="10"	type="N"	default="" 			xpath20=""	xpath21=""/> <!-- 기관전문 관리번호 -->
+	<field name="H_ORG_RQTM"	length="14"	type="N"	default="" 			xpath20=""	xpath21=""/> <!-- 기관전문 전송시각 -->
+	<field name="H_NCE_TL_NO"	length="10"	type="AN"	default="" 			xpath20=""	xpath21=""/> <!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"	length="14"	type="N"	default="" 			xpath20=""	xpath21=""/> <!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"			length="17"	type="AN"	default="" 			xpath20=""	xpath21=""/> <!-- 공란 -->
+
+	<!-- 개별 응답부 -->
+	<field name="SCAF_ID"		length="12"	type="AN"	default="" 			xpath20=""	xpath21=""/> <!-- scaf ID -->
+	<field name="FLR"			length="18"	type="AN"	default="" 			xpath20=""	xpath21=""/> <!-- 공란 -->
+	<!-- 
+	H_RTCD		응답코드
+			
+	P000		정상											
+	P001		주민번호 오류											
+	P005		참가기관ID오류											
+	P006		조회사유오류											
+	E998		내부TimeOut발생											
+	E999		내부시스템오류											
+	S722		Server System 오류
+	-->
+</struct>

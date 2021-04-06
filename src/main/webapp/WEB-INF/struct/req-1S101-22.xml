@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 주민등록 등초본 진위확인 -->
+	<field name="SCAF_ID"		length="12"		type="AN"	default=""/>
+	<field name="ISSUE_TYPE"	length="1"		type="AN"	default=""/>
+	<field name="SSN"			length="13"		type="AN"	default=""/>
+	<field name="NM"			length="50"		type="AN"	default=""/>
+	<field name="ISSUE_NO"		length="16"		type="N"	default=""/>
+	<field name="ISSUE_DATE"	length="8"		type="AN"	default=""/>
+	<field name="ISSUE_KEY"		length="50"		type="AN"	default=""/>
+	<field name="FLR"			length="48"		type="AN"	default=""/>
+</struct>

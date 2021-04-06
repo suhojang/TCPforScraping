@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 주민등록증 진위 요청 -->
+	<field name="H_LNTH"		length="10"		type="AN"	default="" />			<!-- 전문길이 -->
+	<field name="H_GP_CD"		length="9"		type="AN"	default="NICEIF   " />	<!-- 전문그룹코드 -->
+	<field name="H_KN_CD"		length="4"		type="AN"	default="0310" />		<!-- 거래종별코드 -->
+	<field name="H_BZ_CD"		length="5"		type="AN"	default="3A027" /> 		<!-- 거래구분코드 -->
+	<field name="H_T_FLG"		length="1"		type="AN"	default="N" />			<!-- 송수신 flag -->
+	<field name="H_DVC_KN"		length="3"		type="AN"	default="503" />		<!-- 단말기 구분 -->
+	<field name="H_RTCD"		length="4"		type="AN"	default="" />			<!-- 응답코드 -->
+	<field name="H_ORG_ID"		length="9"		type="AN"	default="" /> 			<!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"	length="10"		type="AN"	default="" />			<!-- 기관전문 관리번호 -->
+	<field name="H_ORG_RQTM"	length="14"		type="AN"	default="" />			<!-- 기관전문 전송시각 -->
+	<field name="H_NCE_TL_NO"	length="10"		type="AN"	default="" /> 			<!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"	length="14"		type="AN"	default="" /> 			<!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"			length="17"		type="AN"	default="" />			<!-- 공란 -->
+	
+	<field name="G_BZCD"		length="2"		type="AN"	default="" />			<!-- 상품코드 -->
+	<field name="CST_MBR_NO"	length="20"		type="AN"	default="" /> 			<!-- 회원사 고객번호 -->
+	<field name="USR_ID"		length="40"		type="AN"	default="" />			<!-- 사용자ID -->
+	<field name="G20_SSN"		length="13"		type="AN"	default="" />			<!-- 주민번호(주민등록증) -->
+	<field name="G21_BRTH"		length="6"		type="AN"	default="" />			<!-- 생년월일(운전면허증) -->
+	<field name="RTCD"			length="4"		type="AN"	default="" />			<!-- 스크래핑 응답코드 -->
+	<field name="USYN"			length="1"		type="AN"	default="Y" />			<!-- 사용구분 -->
+	<field name="PRGRS"			length="2"		type="AN"	default="03" />			<!-- 진행상태 -->
+	<field name="SRC_GB"		length="1"		type="AN"	default="1" />
+	<field name="NM"			length="20"		type="AN"	default="" />
+	<field name="G20_PBL_DT"	length="8"		type="AN"	default="" />
+	<field name="SCH_DT"		length="14"		type="AN"	default="" />
+	<field name="RST_YN"		length="1"		type="AN"	default="" />
+	<field name="N_RSN"			length="1"		type="AN"	default="" />
+	<field name="G21_LC_NO1"	length="10"		type="AN"	default="" />
+	<field name="G21_LC_NO2"	length="2"		type="AN"	default="" />
+	<field name="G21_LC_NO3"	length="6"		type="AN"	default="" />
+	<field name="G21_LC_NO4"	length="2"		type="AN"	default="" />
+	<field name="SCAF_ID"		length="12"		type="AN"	default="" />
+	<field name="PWD_NO"		length="6"		type="AN"	default="" />
+	<field name="FLR"			length="95"		type="AN"	default="" />
+	<field name="ER_CK_BT"		length="30"		type="AN"	default="" />
+	<field name="ER_RTCD"		length="4"		type="AN"	default="" />
+</struct>

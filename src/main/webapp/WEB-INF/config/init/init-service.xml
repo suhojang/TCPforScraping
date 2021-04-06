@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<init-service>
+	<service>
+		<name>NiceTcpListener-11100</name>
+		<desc>Nice 스크래핑 요청 수신용 TcpListener open</desc>
+		<service-class>project.kais.init.server.NiceTcpListener</service-class>
+		<init-params>
+			<param name="handler-class">project.kais.init.server.NiceTcpHandler</param>
+			<param name="port">41100</param>
+			<param name="timeout" desc="milliseconds">60*1000</param>
+			<param name="length-contain-self" desc="weither length number contains itself(0=no,1=yes)">0</param>
+			<param name="length-start-index" desc="from 0 index">0</param>
+			<param name="length-size" desc="bytes length">10</param>
+			<param name="bzcd-start-index" desc="from 0 index">23</param>
+			<param name="bzcd-size" desc="bytes length">5</param>
+			<param name="parser-prefix">project.kais.init.server.parser.Parser_</param>
+			<param name="peer-encoding" desc="nice encoding">ms949</param>
+			<param name="instance-code" desc="allocate different string for each server(2bytes)">T1</param>
+			<param name="bufSize" desc="allocate socket bufSize">2048</param>
+			
+			<param name="aib-ip">192.168.16.125</param>
+			<!-- 오영기차장 -->
+			<!-- <param name="ip">192.167.0.151</param> -->
+			<param name="aib-port">11100</param>
+			
+			<param name="crypt-key" desc="aib encryption key">ABCDEFGHIJKLMNOPQRSTUVWXYZ123456</param>
+			<param name="aib-timeout" desc="milliseconds">3*60*1000</param>
+			<param name="data-encoding" desc="nice encoding">ms949</param>
+			<param name="CAPTCHAOPTION">0</param>
+			<param name="CERTKEY">SITE_CERTKEY</param>
+			<param name="DEPARTMENTCODE">000</param>
+			
+		</init-params>
+	</service>
+
+	<service>
+		<name>PushRequestAib</name>
+		<desc>RequestPool을 생성하고 Aib에 스크래핑 요청을 보냄 </desc>
+		<service-class>project.kais.init.client.RequestAib</service-class>
+		<init-params>
+			<param name="ip">192.168.16.125</param>
+			<!-- 오영기차장 -->
+			<!-- <param name="ip">192.167.0.151</param> -->
+			
+			<param name="port">11100</param>
+			<!-- <param name="pool-size">20</param> -->
+			<param name="pool-size">1</param>
+			<!-- <param name="sleep-time" desc="seconds">10</param> -->
+			<param name="sleep-time" desc="seconds">1</param>
+			<param name="data-encoding" desc="nice encoding">ms949</param>
+			<param name="peer-encoding" desc="aib encoding">UTF-8</param>
+			<param name="crypt-key" desc="aib encryption key">ABCDEFGHIJKLMNOPQRSTUVWXYZ123456</param>
+			<param name="CAPTCHAOPTION">0</param>
+			<param name="CERTKEY">SITE_CERTKEY</param>
+			<param name="DEPARTMENTCODE">000</param>
+			<param name="aib-timeout" desc="milliseconds">3*60*1000</param>
+			<param name="process-mark" desc="allocate different string for each server(2bytes)">T1</param>
+			<param name="data-error-messages"><![CDATA[
+				U159소유자 정보가 맞지 않습니다//U158입력하신 정보와 일치하는 차량이 없습니다//U180발급민원은 오전 7시부터 오후 10시 까지만 이용가능합니다//U157해당 인증서가 존재하지 않습니다//U159소유자 정보 [소유자명  상이]가 맞지 않습니다//U158소유자 정보 [번호변경 차량]가 맞지 않습니다//U183발급일자 입력 오류 횟수를 5회 초과 하였습니다//S003발급한 이력이 없습니다//S003데이터가 존재하지 않습니다//U179잔여포인트를 모두 사용하셨습니다//U158소유자 정보 [조회결과없음]가 맞지 않습니다//U158조회된 결과 없습니다//S502REGINUMBER필드값을 입력해주시기 바랍니다//U158조회된 결과없습니다
+			]]></param>
+			<param name="data-error-1s121-messages"><![CDATA[
+				사용할 수 있는 계정이 없습니다//대기 시간이 초과되었습니다//동시 제한 건수가 초과하였습니다
+			]]></param>
+			<param name="RETRY_TIME_1S121">30</param>
+			<param name="RETRY_CNT">3</param>
+		</init-params>
+	</service>
+	
+	<service>
+		<name>PushRequestAibFTP</name>
+		<desc>RequestPool을 생성하고 Aib에 원본관련 스크래핑 요청을 보냄 </desc>
+		<service-class>project.kais.init.client.RequestAibFTP</service-class>
+		<init-params>
+			<param name="ip">192.168.16.125</param>
+			<!-- 오영기차장 -->
+			<!-- <param name="ip">192.167.0.151</param> -->
+			
+			<param name="port">11100</param>
+			<!-- <param name="pool-size">20</param> -->
+			<param name="pool-size">1</param>
+			<param name="sleep-time" desc="seconds">1</param>
+			<param name="data-encoding" desc="nice encoding">ms949</param>
+			<param name="peer-encoding" desc="aib encoding">UTF-8</param>
+			<param name="crypt-key" desc="aib encryption key">ABCDEFGHIJKLMNOPQRSTUVWXYZ123456</param>
+			<param name="CAPTCHAOPTION">0</param>
+			<param name="CERTKEY">SITE_CERTKEY</param>
+			<param name="DEPARTMENTCODE">000</param>
+			<param name="aib-timeout" desc="milliseconds">3*60*1000</param>
+			<param name="process-mark" desc="allocate different string for each server(2bytes)">T1</param>
+			<param name="RETRY_CNT">3</param>
+			
+			<!-- FTP관련 설정 필요 -->
+			<param name="nice-timeout" desc="milliseconds">3*60*1000</param>
+			<param name="length-start-index" desc="from 0 index">0</param>
+			<param name="length-size" desc="bytes length">10</param>
+			<param name="NICE_FTP_IP">192.168.16.125</param>
+			<!-- 오영기차장 -->
+			<!-- <param name="NICE_FTP_IP">192.167.0.151</param> --> 
+			<param name="NICE_FTP_PORT">11500</param>
+			<param name="NICE_FTP_length-contain-self" desc="weither length number contains itself(0=no,1=yes)">1</param>
+		</init-params>
+	</service>
+
+	<service>
+		<name>PushRequestNice</name>
+		<desc>RequestPool을 생성하고 nice에 정보등록 요청을 보냄 </desc>
+		<service-class>project.kais.init.client.RequestNice</service-class>
+		<init-params>
+			<param name="ip">127.0.0.1</param>
+			<param name="port">21100</param>
+			<!-- <param name="pool-size">20</param> -->
+			<param name="pool-size">1</param>
+			<param name="length-contain-self" desc="weither length number contains itself(0=no,1=yes)">0</param>
+			<param name="length-start-index" desc="from 0 index">0</param>
+			<param name="length-size" desc="bytes length">10</param>
+			<!-- <param name="sleep-time" desc="seconds">10</param> -->
+			<param name="sleep-time" desc="seconds">1</param>
+			<param name="data-encoding" desc="nice encoding">ms949</param>
+			<param name="peer-encoding" desc="nice encoding">ms949</param>
+			<param name="nice-timeout" desc="milliseconds">3*60*1000</param>
+			<param name="process-mark" desc="allocate different string for each server(2bytes)">T1</param>
+			
+			<param name="rtcd-check-list" desc="return code checked list">3A027,3A028,3A030,3A039,3A040,3A048,3A049,3A050,3A055,3A056,3A058</param>
+			<param name="CERTKEY">SITE_CERTKEY</param>
+			<param name="DEPARTMENTCODE">000</param>
+			<param name="RETRY_CNT">3</param>
+			
+			<param name="NICE_FTP_IP">192.168.16.125</param>
+			<!-- 오영기차장 -->
+			<!-- <param name="NICE_FTP_IP">192.167.0.151</param> --> 
+			<param name="NICE_FTP_PORT">11500</param>
+			<param name="NICE_FTP_length-contain-self" desc="weither length number contains itself(0=no,1=yes)">1</param>
+		</init-params>
+	</service>
+
+	<service>
+		<name>PushRequestNiceLogger</name>
+		<desc>RequestPool을 생성하고 nice에 로그 등록 요청을 보냄 </desc>
+		<service-class>project.kais.init.client.RequestNiceLogger</service-class>
+		<init-params>
+			<param name="ip">127.0.0.1</param>
+			<param name="port">21100</param>
+			<!-- <param name="pool-size">20</param> -->
+			<param name="pool-size">1</param>
+			<param name="length-contain-self" desc="weither length number contains itself(0=no,1=yes)">0</param>
+			<param name="length-start-index" desc="from 0 index">0</param>
+			<param name="length-size" desc="bytes length">10</param>
+			<!--<param name="sleep-time" desc="seconds">10</param>-->
+			<param name="sleep-time" desc="seconds">1</param>
+			<param name="data-encoding" desc="nice encoding">ms949</param>
+			<param name="peer-encoding" desc="nice encoding">ms949</param>
+			<param name="nice-timeout" desc="milliseconds">3*60*1000</param>
+			<param name="process-mark" desc="allocate different string for each server(2bytes)">T1</param>
+			<param name="RETRY_CNT">3</param>
+		</init-params>
+	</service>
+
+	<service>
+		<name>RemoveOldRequest</name>
+		<desc>요청 후 지정시간 동안 처리안된 건  불가처리</desc>
+		<service-class>project.kais.init.client.RemoveOldRequest</service-class>
+		<init-params>
+			<param name="collapse-time" desc="minutes">6*60</param>
+			<param name="sleep-time" desc="seconds">60</param>
+		</init-params>
+	</service>
+</init-service>

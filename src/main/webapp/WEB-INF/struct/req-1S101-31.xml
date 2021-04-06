@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 차량전손및 사고이력 요청 -->
+	<field name="SCAF_ID"	length="12"	    type="AN"	default=""		/>	<!-- SCAF ID -->
+	<field name="VHCL_NO"	length="20"	    type="AN"	default=""		/>	<!-- 차량번호 -->
+	<field name="FLR"		length="166"	type="AN"	default=""		/>	<!-- 공란 -->
+</struct>

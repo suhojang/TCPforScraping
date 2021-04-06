@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="ADM_ATH_S1000A" resultClass="oMap">
+		/*URI 조회*/
+		SELECT
+			URLST_SEQ
+			,URLST_USYN
+			,URLST_XML
+		FROM TBKW_URLST
+	</select>
+	
+	<update id="ADM_ATH_U1020A" parameterClass="java.util.Map">
+		/*URI 저장*/
+		UPDATE TBKW_URLST SET
+			URLST_XML = #URLST_XML#
+		WHERE URLST_USYN = 'Y'
+	</update>
+	
+</sqlMap>

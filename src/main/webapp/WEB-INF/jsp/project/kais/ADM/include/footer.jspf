@@ -1,0 +1,28 @@
+<%@ page contentType="text/html;charset=UTF-8" errorPage = "/WEB-INF/jsp/common/error.jsp"%><%@
+ page import="com.kwic.xml.parser.JXParser" %>
+		<br />
+		<!-- Footer -->
+		<footer class="main">
+			&copy; 2017 <strong><a href="http://www.kwic.co.kr" target="_new">KWIC</a></strong> all rights reserved.
+		</footer>
+	</div>
+</div>
+<textarea id="PRIVATE_AUTH_XML" style="display:none;width:1;height:0"><%
+JXParser privateAuthXml	= mgrRec.getUrixml();
+out.println(privateAuthXml==null?"<?xml version='1.0' encoding='utf-8'?><root></root>":privateAuthXml.toString(null));
+%></textarea>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	fn_remove_uri_element();
+});
+function fn_remove_uri_element(){
+	var jxp	= new JXParser($('#PRIVATE_AUTH_XML').val());
+	var arr	= $('*[authUri]');
+	for(var i=0;i<arr.length;i++){
+		if(jxp.getElement("//URI[@URI='"+$(arr[i]).attr('authUri')+"']")==null)
+			$(arr[i]).hide();
+	}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+body{ 
+	margin:0 auto;
+	text-align:center;
+	float:center;
+	font-family: 'Malgun Gothic';
+}
+div.jpv-print {
+	margin: 0 auto;
+	border:0;
+	text-align:center;
+	float:center;
+	display:inline;
+}
+th.jpv, td.jpv{
+	border:1px #000000 solid;
+	text-align:center;
+}
+.jpvPage{
+	border:4px double #000000;
+	background:url(/img/naver.gif) repeat;
+}

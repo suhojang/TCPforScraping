@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 민원24 인감증명서 발급사실 확인 -->
+	<element name="JUMIN"				mappingElement="SSN"		default=""/>
+	<element name="ISSUEORG"			mappingElement="ISSUE_ORG"	default=""/>
+	<element name="ISSUEDATE"			mappingElement="ISSUE_DATE"	default=""/>
+	<element name="CHECKISSUENUMBER1"	mappingElement="ISSUE_NO1"	default=""/>
+	<element name="CHECKISSUENUMBER2"	mappingElement="ISSUE_NO2"	default=""/>
+	<element name="CHECKISSUENUMBER3"	mappingElement="ISSUE_NO3"	default=""/>
+	<element name="USERIP"			                                default=""/>
+	<element name="USERPORT"		                                default=""/>
+	<element name="PASSPORTNUMBER"	                                default=""/>
+</struct>

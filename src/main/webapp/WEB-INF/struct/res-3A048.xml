@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 수출차 조회  정보등록 응답 -->
+	<field name="H_LNTH"			length="10"		type="AN"	default=""/>		<!-- 전문길이 -->
+	<field name="H_GP_CD"			length="9"		type="AN"	default="NICEIF   "/>	<!-- 전문그룹코드 -->
+	<field name="H_KN_CD"			length="4"		type="N"	default="0310"/>	<!-- 거래종별코드 -->
+	<field name="H_BZ_CD"			length="5"		type="AN"	default="3A048"/>	<!-- 거래구분코드 -->
+	<field name="H_T_FLG"			length="1"		type="AN"	default="N"/>		<!-- 송수신Flag -->
+	<field name="H_DVC_KN"			length="3"		type="AN"	default="503"/>		<!-- 단말기구분 -->
+	<field name="H_RTCD"			length="4"		type="AN"	default=""/>		<!-- 응답코드 -->
+	<field name="H_ORG_ID"			length="9"		type="AN"	default=""/>		<!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"		length="10"		type="N"	default=""/>		<!-- 기관전문 관리번호 -->
+	<field name="H_ORG_RQTM"		length="14"		type="N"	default=""/>		<!-- 기관전문 전송시간 -->
+	<field name="H_NCE_TL_NO"		length="10"		type="AN"	default=""/>		<!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"		length="14"		type="N"	default=""/>		<!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"				length="17"		type="AN"	default=""/>		<!-- 공란 -->
+	
+	<field name="G_BZCD"			length="2"		type="AN"	default="30"/>	<!-- 상품코드 -->
+	<field name="CST_MBR_NO"		length="20"		type="AN"	default=""/>	<!-- 회원사 고객번호 -->
+	<field name="USR_ID"			length="40"		type="AN"	default=""/>	<!-- 사용자id -->
+	<field name="PRC_STS"			length="2"		type="AN"	default="03"/>	<!-- 진행상태 -->
+	<field name="RTCD"				length="4"		type="AN"	default=""/>	<!-- 스크래핑 응답코드 -->
+	<field name="USYN"				length="1"		type="AN"	default="Y"/>	<!-- 사용구분 -->
+	<field name="SRC_GB"			length="1"		type="AN"	default="1"/>	<!-- 스크래핑 제공구분(SRC_GB) -->
+	<field name="USR_GB"			length="1"		type="AN"	default="1"/>	<!-- 사용자구분 -->
+	<field name="SCAF_ID"			length="12"		type="AN"	default=""/>	<!-- SCAF_ID -->
+	<field name="BZ30_14_10"		length="50"		type="AN"	default=""/>	<!-- 차대번호 -->
+	<field name="BZ30_14_11"		length="14"		type="AN"	default=""/>	<!-- 확인일시 -->
+	<field name="BZ30_14_12"		length="1"		type="AN"	default=""/>	<!-- 수출이행여부 -->
+	<field name="BZ30_14_13"		length="20"		type="AN"	default=""/>	<!-- 수출이행번호 -->
+	<field name="BZ30_14_14"		length="8"		type="AN"	default=""/>	<!-- 수출일자 -->
+	<field name="FLR"				length="30"		type="AN"	default=""/>	<!-- 공란 -->
+	<field name="ER_CK_BT"			length="20"		type="AN"	default=""/>	<!-- 에러체크비트 -->
+	<field name="ER_RTCD"			length="4"		type="AN"	default=""/>	<!-- 오류응답코드 -->
+</struct>

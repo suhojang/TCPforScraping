@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 도로교통공단 운전면허증 진위여부 -->
+	<field name="H_LNTH"		length="10"	type="AN"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="H_GP_CD"		length="9"	type="AN"	default="NICEIF   " xpath20=""	xpath21=""	/>
+	<field name="H_KN_CD"		length="4"	type="N"	default="0300" 		xpath20=""	xpath21=""	/>
+	<field name="H_BZ_CD"		length="5"	type="AN"	default="3A027" 	xpath20=""	xpath21=""	/> <!-- 거래구분코드 -->
+	<field name="H_T_FLG"		length="1"	type="AN"	default="B" 		xpath20=""	xpath21=""	/>
+	<field name="H_DVC_KN"		length="3"	type="AN"	default="503" 		xpath20=""	xpath21=""	/>
+	<field name="H_RTCD"		length="4"	type="AN"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="H_ORG_ID"		length="9"	type="AN"	default="" 			xpath20=""	xpath21=""	/> <!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"	length="10"	type="N"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="H_ORG_RQTM"	length="14"	type="N"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="H_NCE_TL_NO"	length="10"	type="AN"	default="" 			xpath20=""	xpath21=""	/> <!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"	length="14"	type="N"	default="" 			xpath20=""	xpath21=""	/> <!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"			length="17"	type="AN"	default="" 			xpath20=""	xpath21=""	/>
+	
+	<field name="G_BZCD"		length="2"	type="AN"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="CST_MBR_NO"	length="20"	type="AN"	default="" 			xpath20=""	xpath21=""	/> <!-- 회원사 고객번호 -->
+	<field name="USR_ID"		length="40"	type="AN"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="SSN"			length="13"	type="AN"	default="" 			xpath20="JUMIN"	xpath21=""	/>
+	<field name="BRTH"			length="6"	type="AN"	default="" 			xpath20=""	xpath21="JUMIN"	/>
+	<field name="RTCD"			length="4"	type="AN"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="USYN"			length="1"	type="AN"	default="Y" 		xpath20=""	xpath21=""	/>
+	<field name="PRC_STS"		length="2"	type="AN"	default="02" 		xpath20=""	xpath21=""	/>
+	<field name="SRC_GB"		length="1"	type="AN"	default="1" 		xpath20=""	xpath21=""	/>
+	<field name="NM"			length="20"	type="AN"	default="" 			xpath20="NAME"	xpath21="NAME"	/>
+	<field name="PBL_DT"		length="8"	type="AN"	default="" 			xpath20="ISSUEDATE"	xpath21=""	/>
+	<field name="SCH_DT"		length="14"	type="AN"	default="" 			xpath20="CHECKDATE"	xpath21="CHECKDATE"	/>
+	<field name="RST_YN"		length="1"	type="AN"	default="" 			xpath20="AGREEMENTYNE"	xpath21="LNCAGREEMENTYN"	/>
+	<field name="N_RSN"			length="1"	type="AN"	default="" 			xpath20="NOTAGREEDETAIL"	xpath21=""	/>
+	<field name="LC_NO1"		length="10"	type="AN"	default="" 			xpath20=""	xpath21="LNCAREANUMBER"	/>
+	<field name="LC_NO2"		length="2"	type="AN"	default="" 			xpath20=""	xpath21="LNCYEARNUMBER"	/>
+	<field name="LC_NO3"		length="6"	type="AN"	default="" 			xpath20=""	xpath21="LNCSERIALNUMBER"	/>
+	<field name="LC_NO4"		length="2"	type="AN"	default="" 			xpath20=""	xpath21="LNCNUMBER"	/>
+	<field name="SCAF_ID"		length="12"	type="AN"	default="" 			xpath20=""	xpath21=""	/>
+	<field name="PWD_NO"		length="6"	type="AN"	default="" 			xpath20=""	xpath21="PWDSERIALNUMBER"	/>
+	<field name="FLR"			length="129"	type="AN"	default="" 		xpath20=""	xpath21=""	/>
+</struct>

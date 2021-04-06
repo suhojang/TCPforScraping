@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+.fullcustomloader{
+    position:absolute;
+	width:100%;
+	height:100%;
+    top:0px;
+    left:0px;
+	background:#000000;
+	background-color:#000000;
+    z-index:999989;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+.customloader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #8b8b8b; /* color */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    z-index:999999;
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

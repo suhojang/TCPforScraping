@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+<typeAlias type="com.ibatis.sqlmap.engine.type.ClobTypeHandlerCallback" alias="clobHanlder" />
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/Public_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/Scraping_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/Reprocess_SQL.xml"/>
+	
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/ADM_LGN_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/ADM_USR_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/ADM_PCD_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/ADM_MNU_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/ADM_ATH_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/ADM_ERR_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/KAIS/kwic/ADM_PRS_SQL.xml"/>
+	
+</sqlMapConfig>

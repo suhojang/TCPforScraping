@@ -1,0 +1,92 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+	
+}
+th.centerhead{
+	color:#303641;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	background-color: #f5f5f6;
+}
+th.centerhead2{
+	color:#fff;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	background-color: #337ab7;
+}
+th.centerhead3{
+	color:#fff;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	background-color: #00a65a;
+}
+
+th.lefthead{
+	color:#303641;
+	font-size:13px;
+	font-weight:bold;
+	text-align:left;
+	background-color: #f5f5f6;
+}
+td.lefthead{
+	color:#303641;
+	font-size:13px;
+	font-weight:bold;
+	text-align:left;
+	background-color: #f5f5f6;
+}
+td.centerhead{
+	color:#303641;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	background-color: #f5f5f6;
+}
+td.centerhead2{
+	color:#fff;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	background-color: #337ab7;
+}
+td.centerhead3{
+	color:#fff;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	background-color: #00a65a;
+}
+ 
+.itable > thead > tr > td,
+.itable > tbody > tr > td,
+.itable > tfoot > tr > td,
+.itable > thead > tr > th,
+.itable > tbody > tr > th,
+.itable > tfoot > tr > th {
+  background-color: transparent;
+  height:35px;
+}
+.form-common{
+	color:#555555;
+	background-color:#fff;
+	border:1px solid #ebebeb;
+}
+.form-w100{
+	width:100px;
+}
+div.sc-thead{
+	overflow-x:hidden;
+	overflow-y:hidden;
+}
+div.sc-tbody{
+	overflow-x:hidden;
+	overflow-y:auto;
+}

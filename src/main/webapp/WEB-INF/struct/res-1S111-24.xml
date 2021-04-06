@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<!-- 인감증명서 발급사실 확인 -->
+	<field name="SCAF_ID" length="12"	type="AN"	default=""/>
+	<field name="RTCD"	  length="4"	type="AN"	default="P000"/>
+	<field name="FLR"	  length="182"	type="AN"	default=""/>
+</struct>

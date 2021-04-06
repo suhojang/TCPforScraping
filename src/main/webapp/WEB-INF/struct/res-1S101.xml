@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<field name="H_LNTH"		length="10"	type="N"	default=""		/>
+	<field name="H_GP_CD"		length="9"	type="AN"	default="NICEIF   "	/>
+	<field name="H_KN_CD"		length="4"	type="AN"	default="0210"	/>
+	<field name="H_BZ_CD"		length="5"	type="AN"	default="1S101"	/> <!-- 거래구분코드 -->
+	<field name="H_T_FLG"		length="1"	type="AN"	default="N"		/>
+	<field name="H_DVC_KN"		length="3"	type="AN"	default="503"	/>
+	<field name="H_RTCD"		length="4"	type="AN"	default="P000"	/>
+	<field name="H_ORG_ID"		length="9"	type="AN"	default=""		/> <!-- 참가기관ID -->
+	<field name="H_ORG_TL_NO"	length="10"	type="AN"	default=""		/>
+	<field name="H_ORG_RQTM"	length="14"	type="AN"	default=""		/>
+	<field name="H_NCE_TL_NO"	length="10"	type="AN"	default=""		/> <!-- NICE 전문 관리번호 -->
+	<field name="H_NCE_RQTM"	length="14"	type="AN"	default=""		/> <!-- NICE 전문  전송시각 -->
+	<field name="H_FLR"			length="17"	type="AN"	default=""		/>
+	
+	<field name="CST_MBR_NO"	length="20"	type="AN"	default=""		/> <!-- 회원사 고객번호 -->
+	<field name="SCP_SPL_KN"	length="1"	type="AN"	default="5"		/>
+	<field name="RQ_CNT"		length="3"	type="N"	default=""		/> <!-- 정보건수 -->
+	<field name="FLR"			length="26"	type="AN"	default=""		/>
+	
+	<field name="INF_LST"		type="LST"	loopElement="RQ_CNT">
+		<field name="G_BZCD"	length="2"	type="AN"	default=""	/>
+		<field name="G_AREA"	length="conditional"	target="G_BZCD"/>
+	</field>
+	
+</struct>

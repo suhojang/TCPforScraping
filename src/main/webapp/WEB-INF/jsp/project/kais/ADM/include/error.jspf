@@ -1,0 +1,6 @@
+<textarea id='REQUEST_ERROR_MSG' style='display:none;width:0;height:0'>${REQUEST_ERROR_MSG}</textarea>
+<script type="text/javascript">
+var REQUEST_ERROR_MSG	= document.getElementById('REQUEST_ERROR_MSG').value;
+if(REQUEST_ERROR_MSG!='' && REQUEST_ERROR_MSG!='null')
+	alert(document.getElementById('REQUEST_ERROR_MSG').value);
+</script>

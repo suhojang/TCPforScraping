@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KWICVER">
+
+	<typeAlias  alias="oMap" type="com.kwic.util.OrderedMap"/>
+
+	<select id="ADM_USR_S1000A" resultClass="oMap">
+		/*사용자 목록조회*/
+		SELECT
+			A.MGRINF_ID
+			,CD1.CDDTL_NM AS MGRINF_GRD_NM
+			,A.MGRINF_NM
+			,A.MGRINF_TEL
+			,A.MGRINF_USYN
+			,A.MGRINF_RUSR
+			,TO_CHAR(A.MGRINF_RDT,'YYYY.MM.DD') AS MGRINF_RDT
+			,A.MGRINF_SEQ
+			,A.MGRINF_GRD
+			,'00000000' AS MGRINF_PWD
+		FROM TBKW_MGRINF A
+		
+		LEFT OUTER JOIN TBKW_CDDTL CD1
+			ON A.MGRINF_GRD = CD1.CDDTL_DTLCD
+			AND CD1.CDCLS_CLSCD = '0001'
+		
+		ORDER BY MGRINF_RDT ASC
+	</select>
+	<select id="ADM_USR_V1040A" parameterClass="string" resultClass="oMap">
+		/*사용자 조회*/
+		SELECT
+			A.MGRINF_SEQ
+			,A.MGRINF_ID
+			,'00000000' AS MGRINF_PWD
+			,A.MGRINF_GRD
+			,CD1.CDDTL_NM AS MGRINF_GRD_NM
+			,A.MGRINF_NM
+			,A.MGRINF_TEL
+			,A.MGRINF_USYN
+			,A.MGRINF_RUSR
+			,TO_CHAR(A.MGRINF_RDT,'YYYY.MM.DD') AS MGRINF_RDT
+		FROM TBKW_MGRINF A
+		
+		LEFT OUTER JOIN TBKW_CDDTL CD1
+			ON A.MGRINF_GRD = CD1.CDDTL_DTLCD
+			AND CD1.CDCLS_CLSCD = '0001'
+		
+		WHERE A.MGRINF_SEQ = TO_NUMBER(#MGRINF_SEQ#,'FM99999999999')
+	</select>
+	<select id="ADM_USR_V1040A_1" parameterClass="string" resultClass="oMap">
+		/*ID 중복확인*/
+		SELECT 
+			MGRINF_ID
+		FROM TBKW_MGRINF
+		WHERE MGRINF_ID = #MGRINF_ID#
+	</select>
+	<select id="ADM_USR_V1040A_2" parameterClass="java.util.Map" resultClass="oMap">
+		/*ID 중복확인*/
+		SELECT 
+			MGRINF_ID
+		FROM TBKW_MGRINF
+		WHERE MGRINF_SEQ != TO_NUMBER(#MGRINF_SEQ#,'FM99999999999')
+			AND MGRINF_ID = #MGRINF_ID#
+	</select>
+	
+	<insert id="ADM_USR_I1010A" parameterClass="java.util.Map">
+		/*사용자 추가*/
+		INSERT INTO TBKW_MGRINF(
+			MGRINF_ID
+			,MGRINF_PWD
+			,MGRINF_GRD
+			,MGRINF_NM
+			,MGRINF_TEL
+			,MGRINF_USYN
+			,MGRINF_RUSR
+		)VALUES(
+			#MGRINF_ID#
+			,#MGRINF_PWD#
+			,#MGRINF_GRD#
+			,#MGRINF_NM#
+			,#MGRINF_TEL#
+			,#MGRINF_USYN#
+			,#MGRINF_RUSR#
+		)
+	</insert>
+	<update id="ADM_USR_U1020A" parameterClass="java.util.Map">
+		/*사용자 수정*/
+		UPDATE TBKW_MGRINF SET
+			MGRINF_ID	= #MGRINF_ID#
+			,MGRINF_PWD	= (CASE WHEN #MGRINF_PWD#='-' THEN MGRINF_PWD ELSE #MGRINF_PWD# END)
+			,MGRINF_GRD	= #MGRINF_GRD#
+			,MGRINF_NM	= #MGRINF_NM#
+			,MGRINF_TEL	= #MGRINF_TEL#
+			,MGRINF_USYN	= #MGRINF_USYN#
+			,MGRINF_RUSR	= #MGRINF_RUSR#
+		WHERE MGRINF_SEQ = TO_NUMBER(#MGRINF_SEQ#,'FM99999999999')
+	</update>
+	
+	<delete id="ADM_USR_D1030A" parameterClass="string">
+		/*사용자 삭제*/
+		DELETE FROM TBKW_MGRINF
+		WHERE MGRINF_SEQ = TO_NUMBER(#MGRINF_SEQ#,'FM99999999999')
+	</delete>
+	
+</sqlMap>
